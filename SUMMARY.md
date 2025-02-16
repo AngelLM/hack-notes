@@ -6,8 +6,9 @@
 
 * [2022](htb/2022/README.md)
   * [Paper](htb/2022/paper.md)
-* [Quickstart](htb/quickstart.md)
-* [Publish your docs](htb/publish-your-docs.md)
+  * [Late](htb/2022/late.md)
+  * [OpenSource](htb/2022/opensource.md)
+  * [Timelapse](htb/2022/timelapse.md)
 
 ## THM
 
