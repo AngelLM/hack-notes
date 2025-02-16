@@ -1,17 +1,19 @@
 # Table of contents
 
-* [Welcome](README.md)
+* [whoami](README.md)
 
-## Getting Started
+## HTB
 
-* [Quickstart](getting-started/quickstart.md)
-* [Publish your docs](getting-started/publish-your-docs.md)
+* [2022](htb/2022/README.md)
+  * [Paper](htb/2022/paper.md)
+* [Quickstart](htb/quickstart.md)
+* [Publish your docs](htb/publish-your-docs.md)
 
-## Basics
+## THM
 
-* [Editor](basics/editor.md)
-* [Markdown](basics/markdown.md)
-* [Images & media](basics/images-and-media.md)
-* [Interactive blocks](basics/interactive-blocks.md)
-* [OpenAPI](basics/openapi.md)
-* [Integrations](basics/integrations.md)
+* [Editor](thm/editor.md)
+* [Markdown](thm/markdown.md)
+* [Images & media](thm/images-and-media.md)
+* [Interactive blocks](thm/interactive-blocks.md)
+* [OpenAPI](thm/openapi.md)
+* [Integrations](thm/integrations.md)
