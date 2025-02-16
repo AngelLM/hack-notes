@@ -10,11 +10,13 @@
 
 First things first. let’s test the connection with the target machine:
 
-<figure><img src="../../.gitbook/assets/image.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (2).png" alt=""><figcaption></figcaption></figure>
 
 <figure><img src="../../.gitbook/assets/Untitled.png" alt=""><figcaption></figcaption></figure>
 
 The ttl value of 63 may indicate that the target machine is Linux.
+
+<figure><img src="../../.gitbook/assets/image (1).png" alt=""><figcaption></figcaption></figure>
 
 Let’s launch a nmap scan in order to discover the open tcp ports:
 
