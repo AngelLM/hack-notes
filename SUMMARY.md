@@ -9,6 +9,7 @@
   * [Late](htb/2022/late.md)
   * [OpenSource](htb/2022/opensource.md)
   * [Timelapse](htb/2022/timelapse.md)
+  * [GoodGames](htb/2022/goodgames.md)
 
 ## THM
 
