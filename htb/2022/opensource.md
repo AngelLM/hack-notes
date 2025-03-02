@@ -1,4 +1,4 @@
-# Open Source
+# OpenSource
 
 **Date**: 24/05/2022
 
@@ -6,7 +6,7 @@
 
 **CTF**: [https://app.hackthebox.com/machines/OpenSource](https://app.hackthebox.com/machines/OpenSource)
 
----
+***
 
 Let’s start with a ping
 
@@ -28,7 +28,7 @@ While the previous scan was taking place (it took around 2 minutes) I launched a
 
 <figure><img src="../../.gitbook/assets/opensource4.png" alt=""><figcaption></figcaption></figure>
 
-The OpenSSH build version is `7.6p1 Ubuntu 4ubuntu0.7` 
+The OpenSSH build version is `7.6p1 Ubuntu 4ubuntu0.7`
 
 <figure><img src="../../.gitbook/assets/opensource5.png" alt=""><figcaption></figcaption></figure>
 
@@ -41,11 +41,10 @@ The web server is something called Werkzeug… let’s investigate about it:
 <figure><img src="../../.gitbook/assets/opensource6.png" alt=""><figcaption></figcaption></figure>
 
 > WSGI is the Web Server Gateway Interface. It is a specification that describes how a web server communicates with web applications, and how web applications can be chained together to process one request.
-> 
 
 Let’s see how it looks in the web-browser:
 
-<figure><img src="../../.gitbook/assets/opensource7.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/imagen.png" alt=""><figcaption></figcaption></figure>
 
 Every link redirects to # except the buttons Download and Take me there:
 
@@ -57,9 +56,9 @@ Let’s click on Download first:
 
 It starts the download of a compressed file that contains what it seems to be the source code of the upcloud software.
 
- Now, let’s click on the button Take me there!:
+Now, let’s click on the button Take me there!:
 
-<figure><img src="../../.gitbook/assets/opensource10.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/imagen (2).png" alt=""><figcaption></figcaption></figure>
 
 Let’s upload something:
 
@@ -81,7 +80,7 @@ At this point, we have the source code of the application, so let’s try to see
 
 <figure><img src="../../.gitbook/assets/opensource16.png" alt=""><figcaption></figcaption></figure>
 
-[Utils.py](http://Utils.py) code contains interesting stuff. There are several functions that try to sanitize the filename of the file we will try to upload.
+[Utils.py](http://utils.py) code contains interesting stuff. There are several functions that try to sanitize the filename of the file we will try to upload.
 
 ```python
 def recursive_replace(search, replace_me, with_me):
@@ -92,9 +91,9 @@ def recursive_replace(search, replace_me, with_me):
 
 The function `recursive_replace` is self-explained. It takes 3 arguments:
 
-- `search`: String that will be sanitized
-- `replace_me` : String that will be replaced
-- `with_me` : String that will replace the previous one
+* `search`: String that will be sanitized
+* `replace_me` : String that will be replaced
+* `with_me` : String that will replace the previous one
 
 ```python
 def get_file_name(unsafe_filename):
@@ -115,8 +114,6 @@ This function gets the input `unsafe_filename` and does 2 things.
 
 1. It splits the input using the most right `.` character
 2. Then it sanitizes the filename (but not the extension) and concatenate both including between a string representing the current milliseconds)
-
- 
 
 ```python
 """
@@ -158,7 +155,7 @@ Ok, let’s use Burpsuite to try to manipulate the upload. I intercepted an Uplo
 
 It didn’t work well…
 
-After MANY hours trying to bypass the sanitization of the recursive replacement function in get_name… I started from other aproach:
+After MANY hours trying to bypass the sanitization of the recursive replacement function in get\_name… I started from other aproach:
 
 If we list all files we downloaded:
 
@@ -192,7 +189,7 @@ But, between “ease testing” and “updated” there is a strange url with so
 +  "http.proxyStrictSSL": false
 ```
 
-Let’s 
+Let’s
 
 <figure><img src="../../.gitbook/assets/opensource27.png" alt=""><figcaption></figcaption></figure>
 
@@ -210,11 +207,11 @@ Let’s
 
 <figure><img src="../../.gitbook/assets/opensource32.png" alt=""><figcaption></figcaption></figure>
 
-<figure><img src="../../.gitbook/assets/opensource33.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/imagen (4).png" alt=""><figcaption></figcaption></figure>
 
-<figure><img src="../../.gitbook/assets/opensource34.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/imagen (5).png" alt=""><figcaption></figcaption></figure>
 
-<figure><img src="../../.gitbook/assets/opensource35.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/imagen (6).png" alt=""><figcaption></figcaption></figure>
 
 <figure><img src="../../.gitbook/assets/opensource36.png" alt=""><figcaption></figcaption></figure>
 
@@ -228,17 +225,17 @@ Let’s
 
 <figure><img src="../../.gitbook/assets/opensource41.png" alt=""><figcaption></figcaption></figure>
 
-<figure><img src="../../.gitbook/assets/opensource42.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/imagen (9).png" alt=""><figcaption></figcaption></figure>
 
-<figure><img src="../../.gitbook/assets/opensource43.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/imagen (8).png" alt=""><figcaption></figcaption></figure>
 
 <figure><img src="../../.gitbook/assets/opensource44.png" alt=""><figcaption></figcaption></figure>
 
-<figure><img src="../../.gitbook/assets/opensource45.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/imagen (10).png" alt=""><figcaption></figcaption></figure>
 
-<figure><img src="../../.gitbook/assets/opensource46.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/imagen (11).png" alt=""><figcaption></figcaption></figure>
 
-<figure><img src="../../.gitbook/assets/opensource47.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/imagen (12).png" alt=""><figcaption></figcaption></figure>
 
 <figure><img src="../../.gitbook/assets/opensource48.png" alt=""><figcaption></figcaption></figure>
 
