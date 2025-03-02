@@ -52,15 +52,15 @@ We see some information, but besides an email address ([info@cozyhosting.htb](ma
 
 Let’s check the website using the web-browser:
 
-<figure><img src="../../.gitbook/assets/Pasted image 20231002195046.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/imagen (8).png" alt=""><figcaption></figcaption></figure>
 
 The source code of the page does not seem to reveal anything that we can use at the moment. We see that there is a Login button, let’s click it:
 
-<figure><img src="../../.gitbook/assets/Pasted image 20231002195141.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/imagen (9).png" alt=""><figcaption></figcaption></figure>
 
 We see a login panel. We can try to see if it is vulnerable to **SQL injection**:
 
-<figure><img src="../../.gitbook/assets/Pasted image 20231002195141 (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/imagen (10).png" alt=""><figcaption></figcaption></figure>
 
 After testing with the most common queries, it does not appear to be vulnerable to SQLi.
 
