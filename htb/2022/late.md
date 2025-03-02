@@ -1,14 +1,16 @@
 # Late
 
+## Late
+
 **Date**: 22/05/2022
 
 **Difficulty**: EASY
 
 **CTF**: [https://app.hackthebox.com/machines/Late](https://app.hackthebox.com/machines/Late)
 
----
+***
 
-# Recognizance Phase
+## Recognizance Phase
 
 Let’s start sending a ping to the target IP:
 
@@ -42,23 +44,23 @@ At email, we can see that it’s using the domain late.htb, so let’s add it to
 
 Now, let’s visit the webpage with the IP and with the domain late.htb to see if there is any difference (in this case the page displayed seems to be the same).
 
-<figure><img src="../../.gitbook/assets/late6.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/imagen (11).png" alt=""><figcaption></figcaption></figure>
 
-Taking a look to the main webpage I discover a link that redirect us to the subdomain `images.late.htb`: 
+Taking a look to the main webpage I discover a link that redirect us to the subdomain `images.late.htb`:
 
-<figure><img src="../../.gitbook/assets/late7.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/imagen (12).png" alt=""><figcaption></figcaption></figure>
 
 Let’s add it to the /etc/hosts file and visit it:
 
-<figure><img src="../../.gitbook/assets/late8.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/imagen (13).png" alt=""><figcaption></figcaption></figure>
 
 Interesting, it seems to be an online service for converting image to text using a tool named Flask. There is a field where we can select a file of our machine and a button that will start the scan process…
 
 Let’s test it with a valid image with text to see what happens:
 
-<figure><img src="../../.gitbook/assets/late9.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/imagen (14).png" alt=""><figcaption></figcaption></figure>
 
-i have uploaded a PNG file with the text ”Hi, I’m Angel LM!” and after clicking on SCAN IMAGE button the site asks me to download the results… Let’s see what’s inside:
+I have uploaded a PNG file with the text ”Hi, I’m Angel LM!” and after clicking on SCAN IMAGE button the site asks me to download the results… Let’s see what’s inside:
 
 <figure><img src="../../.gitbook/assets/late10.png" alt=""><figcaption></figcaption></figure>
 
@@ -90,7 +92,7 @@ Mmm… there is some information leakage? Apparently there is a user named `svc_
 
 Ok, so there is no way to upload a malicious file. What about injecting the code inside the image? If we create an image of a code that could be executed by the framework we get an RCE and maybe we can get a Reverse Shell after.
 
-I found this interesting article from hacktricks: [https://book.hacktricks.xyz/pentesting-web/ssti-server-side-template-injection](https://book.hacktricks.xyz/pentesting-web/ssti-server-side-template-injection). 
+I found this interesting article from hacktricks: [https://book.hacktricks.xyz/pentesting-web/ssti-server-side-template-injection](https://book.hacktricks.xyz/pentesting-web/ssti-server-side-template-injection).
 
 The first step is to know if there is an Server Side Template Injection (SSTI) vulnerability.
 
