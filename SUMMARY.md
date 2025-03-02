@@ -20,6 +20,7 @@
 * [2023](htb/2023/README.md)
   * [Pilgrimage](htb/2023/pilgrimage.md)
   * [CozyHosting](htb/2023/cozyhosting.md)
+  * [Keeper](htb/2023/keeper.md)
 * [2024](htb/2024.md)
 
 ## THM
