@@ -32,7 +32,7 @@ Let’s add the timelapse.htb domain to /etc/hosts and take a look to the webpag
 
 <figure><img src="../../.gitbook/assets/timelapse4.png" alt=""><figcaption></figcaption></figure>
 
-<figure><img src="../../.gitbook/assets/imagen.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/imagen (17).png" alt=""><figcaption></figcaption></figure>
 
 Nothing useful there…
 

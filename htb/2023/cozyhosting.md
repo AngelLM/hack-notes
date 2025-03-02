@@ -52,15 +52,15 @@ We see some information, but besides an email address ([info@cozyhosting.htb](ma
 
 Let’s check the website using the web-browser:
 
-<figure><img src="../../.gitbook/assets/imagen (8) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/imagen (8) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 The source code of the page does not seem to reveal anything that we can use at the moment. We see that there is a Login button, let’s click it:
 
-<figure><img src="../../.gitbook/assets/imagen (9) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/imagen (9) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 We see a login panel. We can try to see if it is vulnerable to **SQL injection**:
 
-<figure><img src="../../.gitbook/assets/imagen (10) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/imagen (10) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 After testing with the most common queries, it does not appear to be vulnerable to SQLi.
 
@@ -188,7 +188,7 @@ So, **josh** and **root**.
 
 There is a **jar** file on the current directory, so let’s transfer it to our machine to extract the data just in case there is anything useful.
 
-<figure><img src="../../.gitbook/assets/imagen (5) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/imagen (5) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 I don’t know if it will be useful, but we got credentials to access a database: `postgres:VXXXXXXXxR`
 
@@ -216,7 +216,7 @@ Let’s do the same for the table **users**:
 
 The passwords are encrypted, apparently in bcrypt. Let’s try to crack them using **john**:
 
-<figure><img src="../../.gitbook/assets/imagen (2) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/imagen (2) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 After a while, **john** reports a coincidence for the admin password. et’s check if that password allows us to do user pivoting:
 

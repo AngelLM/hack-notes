@@ -1,4 +1,4 @@
-# GoodGames - Writeup
+# GoodGames
 
 **Date**: 09/06/2022
 
@@ -6,7 +6,7 @@
 
 **CTF**: [https://app.hackthebox.com/machines/GoodGames](https://app.hackthebox.com/machines/GoodGames)
 
----
+***
 
 Let’s start with a ping to see if we have connection with the machine:
 
@@ -32,7 +32,7 @@ Let’s use whatweb to try to obtain more info of the website hosted in the http
 
 Nothing new, let’s see how the page looks:
 
-<figure><img src="../../.gitbook/assets/goodgames5.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/imagen.png" alt=""><figcaption></figcaption></figure>
 
 I appreciate no difference between the website accessed via IP or domain, so I’m going to use the domain.
 
@@ -46,45 +46,45 @@ Let’s take a look to the web content:
 
 The main page has post previews, news previews, image previews…
 
-<figure><img src="../../.gitbook/assets/goodgames7.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/imagen (1).png" alt=""><figcaption></figcaption></figure>
 
 There is a directory called static with a subdirectory called images.
 
 Let’s try to visit goodgames.htb/static/images and goodgames.htb/static
 
-<figure><img src="../../.gitbook/assets/goodgames8.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/imagen (2).png" alt="" width="375"><figcaption></figcaption></figure>
 
-<figure><img src="../../.gitbook/assets/goodgames9.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/imagen (3).png" alt="" width="375"><figcaption></figcaption></figure>
 
 There is no directory listing.
 
 Let’s see the Blog:
 
-<figure><img src="../../.gitbook/assets/goodgames10.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/imagen (4).png" alt=""><figcaption></figcaption></figure>
 
 There are 14 pages of blog entries but only the first one works. The author of each post appears, so they may be valid users.
 
 And the store link redirect us here:
 
-<figure><img src="../../.gitbook/assets/goodgames11.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/imagen (5).png" alt=""><figcaption></figcaption></figure>
 
 There is also login form in the main page:
 
-<figure><img src="../../.gitbook/assets/goodgames12.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/imagen (6).png" alt=""><figcaption></figcaption></figure>
 
 Let’s try to sign in
 
-<figure><img src="../../.gitbook/assets/goodgames13.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/imagen (7).png" alt=""><figcaption></figcaption></figure>
 
 <figure><img src="../../.gitbook/assets/goodgames14.png" alt=""><figcaption></figcaption></figure>
 
 And, let’s log in:
 
-<figure><img src="../../.gitbook/assets/goodgames15.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/imagen (8).png" alt=""><figcaption></figcaption></figure>
 
 There is nothing I can do in this panel but changing my password…
 
-<figure><img src="../../.gitbook/assets/goodgames16.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/imagen (9).png" alt=""><figcaption></figcaption></figure>
 
 And, if I try it, it breaks. Let’s intercept the petition using Burpsuite:
 
@@ -94,13 +94,13 @@ Nothing interesting I think.
 
 Going back to the main page, I don’t really know if I was able to access to this post before login in, but now I have access:
 
-<figure><img src="../../.gitbook/assets/goodgames18.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/imagen (10).png" alt=""><figcaption></figcaption></figure>
 
 <figure><img src="../../.gitbook/assets/goodgames19.png" alt=""><figcaption></figcaption></figure>
 
 And I can leave a reply! Let’s try some XSS!
 
-<figure><img src="../../.gitbook/assets/goodgames20.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/imagen (11).png" alt=""><figcaption></figcaption></figure>
 
 Mmm… The server doesn’t allow me to post normal messages and it drops a server internal error.
 
@@ -130,7 +130,7 @@ And url-encode it:
 
 Let’s forward the petition…
 
-<figure><img src="../../.gitbook/assets/goodgames26.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/imagen (12).png" alt=""><figcaption></figcaption></figure>
 
 And done! we bypassed the login… Let’s try to see if we can enumerate the database. First of all, let’s intercept the login petition again and send it to the repeater:
 
@@ -182,19 +182,19 @@ Let’s try to log to the website again, but now with the obtained credentials:
 
 So, now we are logged as an administrator.
 
-<figure><img src="../../.gitbook/assets/goodgames37.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/imagen (13).png" alt=""><figcaption></figcaption></figure>
 
 This button was not there before… let’s check it.
 
-<figure><img src="../../.gitbook/assets/goodgames38.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/imagen (14).png" alt=""><figcaption></figcaption></figure>
 
 It redirected us to a subdomain that I had to include in the /etc/hosts file. It shows up a login page. Let’s try to use the same credentials we used to log in as the admin user before:
 
-<figure><img src="../../.gitbook/assets/goodgames39.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/imagen (15).png" alt=""><figcaption></figcaption></figure>
 
 Aaaand we are in… It has 3 tabs, but this one is interesting, as is the only one that seems to allows us to modify anything:
 
-<figure><img src="../../.gitbook/assets/goodgames40.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/imagen (16).png" alt=""><figcaption></figcaption></figure>
 
 <figure><img src="../../.gitbook/assets/goodgames41.png" alt=""><figcaption></figcaption></figure>
 

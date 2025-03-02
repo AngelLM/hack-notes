@@ -44,21 +44,21 @@ At email, we can see that it’s using the domain late.htb, so let’s add it to
 
 Now, let’s visit the webpage with the IP and with the domain late.htb to see if there is any difference (in this case the page displayed seems to be the same).
 
-<figure><img src="../../.gitbook/assets/imagen (11) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/imagen (11) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 Taking a look to the main webpage I discover a link that redirect us to the subdomain `images.late.htb`:
 
-<figure><img src="../../.gitbook/assets/imagen (12) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/imagen (12) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 Let’s add it to the /etc/hosts file and visit it:
 
-<figure><img src="../../.gitbook/assets/imagen (13) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/imagen (13) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 Interesting, it seems to be an online service for converting image to text using a tool named Flask. There is a field where we can select a file of our machine and a button that will start the scan process…
 
 Let’s test it with a valid image with text to see what happens:
 
-<figure><img src="../../.gitbook/assets/imagen (14).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/imagen (14) (1).png" alt=""><figcaption></figcaption></figure>
 
 I have uploaded a PNG file with the text ”Hi, I’m Angel LM!” and after clicking on SCAN IMAGE button the site asks me to download the results… Let’s see what’s inside:
 
