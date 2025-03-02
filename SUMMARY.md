@@ -19,6 +19,7 @@
   * [Secret](htb/2022/secret.md)
 
 ## THM
+
 * [2022](thm/2022/README.md)
   * [Dogcat](thm/2022/dogcat.md)
   * [GitHappens](thm/2022/githappens.md)
@@ -30,7 +31,7 @@
   * [TomGhost](thm/2022/tomghost.md)
 * [2025](thm/2025/README.md)
   * [AgentSudo](thm/2025/agentsudo.md)
-  * [StuxCTF](thm/2025/suxctf.md)
+  * [StuxCTF](thm/2025/stuxctf.md)
   * [Lookup](thm/2025/lookup.md)
   * [Light](thm/2025/light.md)
   * [SilverPlatter](thm/2025/silverplatter.md)

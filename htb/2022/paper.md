@@ -1,4 +1,4 @@
-# Paper - Writeup
+# Paper
 
 **Date**: 21/05/2022
 
@@ -6,11 +6,11 @@
 
 **CTF**: [https://app.hackthebox.com/machines/Paper](https://app.hackthebox.com/machines/Paper)
 
----
+***
 
-First things first. let’s test the connection with the target machine: 
+First things first. let’s test the connection with the target machine:
 
-<figure><img src="../../.gitbook/assets/paper0.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/paper0 (1).png" alt=""><figcaption></figcaption></figure>
 
 The ttl value of 63 may indicate that the target machine is Linux.
 
@@ -18,7 +18,7 @@ Let’s launch a nmap scan in order to discover the open tcp ports:
 
 <figure><img src="../../.gitbook/assets/paper1.png" alt=""><figcaption></figcaption></figure>
 
-There are 3 ports open: 22 (ssh), 80 (http), 443 (https). 
+There are 3 ports open: 22 (ssh), 80 (http), 443 (https).
 
 <figure><img src="../../.gitbook/assets/paper2.png" alt=""><figcaption></figcaption></figure>
 
@@ -134,7 +134,7 @@ Not that easy… yep, it is only readable by the owner… there will a ssh key?
 
 <figure><img src="../../.gitbook/assets/paper32.png" alt=""><figcaption></figcaption></figure>
 
-Nope… but the .hubot_history sounds interesting:
+Nope… but the .hubot\_history sounds interesting:
 
 <figure><img src="../../.gitbook/assets/paper33.png" alt=""><figcaption></figcaption></figure>
 
