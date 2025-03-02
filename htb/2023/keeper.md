@@ -110,7 +110,7 @@ The tool successfully found the master password! `rødgrød med fløde`
 
 As we have the master password, we can see the content of the KeePass database we downloaded. To do so, we need a client for KeePass but I found this WebClient that works with KeePass files ([https://app.keeweb.info/](https://app.keeweb.info/)):
 
-<figure><img src="../../.gitbook/assets/imagen (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/imagen (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 So, here we have a rsa-key for the user **root**.
 

@@ -57,7 +57,7 @@ The **whatweb** tool has not provided us with any remarkable information, so we 
 At first glance we see what looks like a form to upload files. And the content gives us to understand that it is an image hosting page.\
 In the source code of the page we found nothing useful. Let’s navigate through the different sections of the page:
 
-<figure><img src="../../.gitbook/assets/imagen (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/imagen (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 <figure><img src="../../.gitbook/assets/imagen (2) (1) (1).png" alt=""><figcaption></figcaption></figure>
 

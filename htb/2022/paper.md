@@ -30,7 +30,7 @@ Let’s see what is hosted in the http and https ports:
 
 <figure><img src="../../.gitbook/assets/paper5.png" alt=""><figcaption></figcaption></figure>
 
-<figure><img src="../../.gitbook/assets/imagen (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/imagen (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 Seems to be the same page.
 

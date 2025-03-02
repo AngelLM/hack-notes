@@ -6,8 +6,7 @@
 
 **CTF**: [https://app.hackthebox.com/machines/Timelapse](https://app.hackthebox.com/machines/Timelapse)
 
----
-
+***
 
 First of all, let’s test the connectivity with the target machine:
 
@@ -33,7 +32,7 @@ Let’s add the timelapse.htb domain to /etc/hosts and take a look to the webpag
 
 <figure><img src="../../.gitbook/assets/timelapse4.png" alt=""><figcaption></figcaption></figure>
 
-<figure><img src="../../.gitbook/assets/timelapse5.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/imagen.png" alt=""><figcaption></figcaption></figure>
 
 Nothing useful there…
 
@@ -73,7 +72,7 @@ Let’s see what was inside the compressed file:
 
 Mmm… the zip is password protected. Maybe we can crack it with John, but before doing that, let’s take a look to the other files:
 
-The .docx files describe the use of a tool called Local Administrator Password Solution that can manage the domain passwords. There is also an .msi installer. Maybe is an application that is installed in the target machine. 
+The .docx files describe the use of a tool called Local Administrator Password Solution that can manage the domain passwords. There is also an .msi installer. Maybe is an application that is installed in the target machine.
 
 Let’s see if we can crack the password of the zip file:
 
@@ -148,13 +147,13 @@ let’s execute the same commands:
 
 <figure><img src="../../.gitbook/assets/timelapse36.png" alt=""><figcaption></figcaption></figure>
 
-Now we can execute commands as svc_deploy user… Let’s check the privs of svc_deploy user:
+Now we can execute commands as svc\_deploy user… Let’s check the privs of svc\_deploy user:
 
 <figure><img src="../../.gitbook/assets/timelapse37.png" alt=""><figcaption></figcaption></figure>
 
 <figure><img src="../../.gitbook/assets/timelapse38.png" alt=""><figcaption></figcaption></figure>
 
-This users is member of LAPS_Readers group…
+This users is member of LAPS\_Readers group…
 
 <figure><img src="../../.gitbook/assets/timelapse39.png" alt=""><figcaption></figcaption></figure>
 

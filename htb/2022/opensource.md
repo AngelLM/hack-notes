@@ -44,7 +44,7 @@ The web server is something called Werkzeug… let’s investigate about it:
 
 Let’s see how it looks in the web-browser:
 
-<figure><img src="../../.gitbook/assets/imagen.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/imagen (1).png" alt=""><figcaption></figcaption></figure>
 
 Every link redirects to # except the buttons Download and Take me there:
 

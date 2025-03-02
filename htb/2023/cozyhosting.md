@@ -212,7 +212,7 @@ Let’s do the same for the table **users**:
 
 <figure><img src="../../.gitbook/assets/Pasted image 20231013180848.png" alt=""><figcaption></figcaption></figure>
 
-<figure><img src="../../.gitbook/assets/imagen (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/imagen (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 The passwords are encrypted, apparently in bcrypt. Let’s try to crack them using **john**:
 
