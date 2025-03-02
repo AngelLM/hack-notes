@@ -17,6 +17,9 @@
   * [Forest](htb/2022/forest.md)
   * [Nunchucks](htb/2022/nunchucks.md)
   * [Secret](htb/2022/secret.md)
+* [2023](htb/2023/README.md)
+  * [Pilgrimage](htb/2023/pilgrimage.md)
+* [2024](htb/2024.md)
 
 ## THM
 
