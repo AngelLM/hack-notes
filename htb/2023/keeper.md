@@ -54,13 +54,13 @@ I see, the server may be using virtual hosting, so we need to add the domain `ke
 
 After doing it, the keeper.htb page shows the same message, so let’s check the tickets.keeper.htb subdomain:
 
-<figure><img src="../../.gitbook/assets/imagen (2).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/imagen (2) (1).png" alt=""><figcaption></figcaption></figure>
 
 Apparently the site is using an application called **Request Tracker** made by **BEST PRACTICAL** which is a real product.
 
 A quick search shows that the default user for this application is **root** and its password is **password**. Let’s check if it works:
 
-<figure><img src="../../.gitbook/assets/imagen (3).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/imagen (3) (1).png" alt=""><figcaption></figcaption></figure>
 
 Yes, it worked.
 
@@ -110,7 +110,7 @@ The tool successfully found the master password! `rødgrød med fløde`
 
 As we have the master password, we can see the content of the KeePass database we downloaded. To do so, we need a client for KeePass but I found this WebClient that works with KeePass files ([https://app.keeweb.info/](https://app.keeweb.info/)):
 
-<figure><img src="../../.gitbook/assets/imagen (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/imagen (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 So, here we have a rsa-key for the user **root**.
 
