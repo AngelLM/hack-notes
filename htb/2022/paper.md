@@ -26,11 +26,11 @@ Let’s see what is hosted in the http and https ports:
 
 <figure><img src="../../.gitbook/assets/paper3.png" alt=""><figcaption></figcaption></figure>
 
-<figure><img src="../../.gitbook/assets/imagen (13) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/paper4.png" alt=""><figcaption></figcaption></figure>
 
 <figure><img src="../../.gitbook/assets/paper5.png" alt=""><figcaption></figcaption></figure>
 
-<figure><img src="../../.gitbook/assets/imagen (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/paper6.png" alt=""><figcaption></figcaption></figure>
 
 Seems to be the same page.
 
@@ -48,7 +48,7 @@ Not apparently… Let’s enumerate the directories using wfuzz:
 
 <figure><img src="../../.gitbook/assets/paper10.png" alt=""><figcaption></figcaption></figure>
 
-<figure><img src="../../.gitbook/assets/imagen (2) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/paper11.png" alt=""><figcaption></figcaption></figure>
 
 Looks like a standard page…
 
@@ -56,11 +56,11 @@ Ok, no clues. Let’s go back and see what we found so far…
 
 Taking a look to the whatweb response, there is something that looks like a domain… `office.paper` let’s add it to the /etc/hosts file and take a look to it in the web browser:
 
-<figure><img src="../../.gitbook/assets/imagen (3) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/paper12.png" alt=""><figcaption></figcaption></figure>
 
 Yeah, there is a website here!
 
-<figure><img src="../../.gitbook/assets/imagen (4) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/paper13.png" alt=""><figcaption></figcaption></figure>
 
 This site is using Wordpress 5.2.3
 
@@ -96,17 +96,17 @@ Let’s try it!
 
 So, yeah, we have access to the draft posts contents… There is one with a “secret” url that seems interesting… Let’s add `chat.office.paper` to /ect/hosts file and visit it with the web-browser
 
-<figure><img src="../../.gitbook/assets/imagen (5) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/paper21.png" alt=""><figcaption></figcaption></figure>
 
 It is a register page, let’s register a new user:
 
-<figure><img src="../../.gitbook/assets/imagen (6) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/paper22.png" alt=""><figcaption></figcaption></figure>
 
-<figure><img src="../../.gitbook/assets/imagen (7) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/paper23.png" alt=""><figcaption></figcaption></figure>
 
 Automatically I get invited to a chat:
 
-<figure><img src="../../.gitbook/assets/imagen (8) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/paper24.png" alt=""><figcaption></figcaption></figure>
 
 Let’s take a look to the chat messages:
 

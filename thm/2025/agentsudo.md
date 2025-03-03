@@ -70,7 +70,7 @@ Seems to be a message sent by Agent R to Agent C telling him that his password i
 
 First I tried with the 100 most used passwords dictionary for both FTP and SSH services. After not getting a match, I used the 1000 most common one and… we have a match!
 
-![imagen.png](imagen.png)
+<figure><img src="../../.gitbook/assets/agentsudo1.png" alt=""><figcaption></figcaption></figure>
 
 Now we have a valid credentials for the FTP service. Let’s see if it works for SSH also:
 
@@ -112,21 +112,21 @@ If we attempt to decompress the ZIP file, we are asked for a password:
 
 Let’s try to use JohnTheRipper to crack the password. First we have to use **zip2john** tool, and then **john**:
 
-![imagen.png](imagen%201.png)
+<figure><img src="../../.gitbook/assets/agentsudo25.png" alt=""><figcaption></figcaption></figure>
 
  And we get the password! Let’s decompress the ZIP file:
 
-![imagen.png](imagen%202.png)
+<figure><img src="../../.gitbook/assets/agentsudo26.png" alt=""><figcaption></figcaption></figure>
 
 Now we can read another message wrote by Agent R, and a code. It looks weird, so let’s use Cyberchef to check if it is encoded:
 
-![imagen.png](imagen%203.png)
+<figure><img src="../../.gitbook/assets/agentsudo27.png" alt=""><figcaption></figcaption></figure>
 
 Seems to be encoded in Base64, and decoded it shows a clear text.
 
 Let’s try to use it as the password to decode the image cute-alien.jpg using an online tool for steganography:
 
-![imagen.png](imagen%204.png)
+<figure><img src="../../.gitbook/assets/agentsudo28.png" alt=""><figcaption></figcaption></figure>
 
 So, it reveals a message wrote by Chris, telling James its login password, so we now have a new credentials.
 
@@ -138,7 +138,7 @@ Let’s see if we can connect to FTP or SSH using this credentials:
 
 The credentials are not valid for FTP, but they are for SSH! Now we are logged as james at the target machine!
 
-![imagen.png](imagen%205.png)
+<figure><img src="../../.gitbook/assets/agentsudo29.png" alt=""><figcaption></figcaption></figure>
 
 At the home folder of the current user we found the user flag and an image. Let’s download the image using **scp**:
 
@@ -162,6 +162,6 @@ It looks interesting, let’s search what does it mean. After a quick search it 
 
 As it’s explained on the exploit description, there is a vulnerability where, in this conditions where the active user can execute a bash as any other user except as root, the command `sudo -u#-1 /bin/bash` can be executed to gain a root bash. 
 
-![imagen.png](imagen%206.png)
+<figure><img src="../../.gitbook/assets/agentsudo30.png" alt=""><figcaption></figcaption></figure>
 
 That’s how we gain root privileges and the root flag.
