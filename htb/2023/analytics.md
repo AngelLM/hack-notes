@@ -1,3 +1,7 @@
+---
+description: '#docker, #linux, #overlayfs'
+---
+
 # Analytics
 
 [**Analytics**](https://app.hackthebox.com/machines/Analytics) is an **EASY** machine from the Hack The Box platform. In it we will exploit an **RCE** thanks to an outdated version of a web tool. We will also perform a **Docker breakout**, to finally obtain root permissions thanks to the exploitation of a vulnerability in the **kernel version**.

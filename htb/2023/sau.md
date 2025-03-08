@@ -1,3 +1,7 @@
+---
+description: '#binary, #csrf, #cve, #linux, #rce, #sudo'
+---
+
 # Sau
 
 [**au**](https://app.hackthebox.com/machines/Sau) is an **EASY** machine from the **Hack The Box** platform. In this machine we will exploit 2 known issues of 2 different web tools that will give us access to the target machine. After that we will escalate our privileges by taking advantage of a binary that we will be able to execute with sudo permissions.
