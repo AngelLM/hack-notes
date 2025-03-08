@@ -21,6 +21,7 @@
   * [Pilgrimage](htb/2023/pilgrimage.md)
   * [CozyHosting](htb/2023/cozyhosting.md)
   * [Keeper](htb/2023/keeper.md)
+  * [Analytics](htb/2023/analytics.md)
 * [2024](htb/2024.md)
 
 ## THM
