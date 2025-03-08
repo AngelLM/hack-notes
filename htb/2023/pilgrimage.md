@@ -118,7 +118,7 @@ Yes, we have succeeded. We can see that there are two users with a bash: **root*
 If we investigate in the rest of the files, we see that in the **dashboard.php** there is a mention of a Sqlite database located in /var/db/pilgrimage.\
 If we perform the same steps, but this time to reveal the contents of this database we can see the following:
 
-<figure><img src="../../.gitbook/assets/image (35).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (92).png" alt=""><figcaption></figcaption></figure>
 
 `emily:aXXXXXXXXXXXX3`
 

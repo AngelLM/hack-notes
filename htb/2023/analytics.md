@@ -56,7 +56,7 @@ There is a contact form at the bottom on the page that doesn’t seem to work.
 
 By hovering the top menu “Login” link we can see that it will redirect us to http://data.analytical.htb
 
-<figure><img src="../../.gitbook/assets/image (13) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (52).png" alt=""><figcaption></figcaption></figure>
 
 Let’s add this subdomain in the **/etc/hosts** file.
 
@@ -64,7 +64,7 @@ Let’s add this subdomain in the **/etc/hosts** file.
 
 Now, let’s click on the link:
 
-<figure><img src="../../.gitbook/assets/image (15) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (51).png" alt=""><figcaption></figcaption></figure>
 
 It redirects us to a website where there is a service called Metabase. Let’s search what is this:
 
