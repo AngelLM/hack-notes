@@ -118,7 +118,7 @@ Yes, we have succeeded. We can see that there are two users with a bash: **root*
 If we investigate in the rest of the files, we see that in the **dashboard.php** there is a mention of a Sqlite database located in /var/db/pilgrimage.\
 If we perform the same steps, but this time to reveal the contents of this database we can see the following:
 
-<figure><img src="../../.gitbook/assets/image.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (35).png" alt=""><figcaption></figcaption></figure>
 
 `emily:aXXXXXXXXXXXX3`
 
@@ -132,7 +132,7 @@ And we can also try to connect as this user via SSH:
 
 It seems that the credentials are valid and we are logged in as the user emily.
 
-<figure><img src="../../.gitbook/assets/image (2).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (2) (1).png" alt=""><figcaption></figcaption></figure>
 
 We check that we are indeed on the target machine and find the user flag.
 
@@ -172,4 +172,4 @@ Is there an exploit for this?
 
 Yes. If we follow the instructions, it looks like we can get a reverse shell as root:
 
-<figure><img src="../../.gitbook/assets/image (3).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (3) (1).png" alt=""><figcaption></figcaption></figure>
