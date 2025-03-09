@@ -1,27 +1,29 @@
 # Internal
 
+## Internal
+
 **Date**: 10/04/2022
 
 **Difficulty**: Hard
 
 **CTF**: [https://tryhackme.com/room/internal](https://tryhackme.com/room/internal)
 
----
+***
 
 **Scope of Work**
 
-The client requests that an engineer conducts an external, web app, and internal assessment of the provided virtual environment. The client has asked that minimal information be provided about the assessment, wanting the engagement conducted from the eyes of a malicious actor (black box penetration test).  The client has asked that you secure two flags (no location provided) as proof of exploitation:
+The client requests that an engineer conducts an external, web app, and internal assessment of the provided virtual environment. The client has asked that minimal information be provided about the assessment, wanting the engagement conducted from the eyes of a malicious actor (black box penetration test).  The client has asked that you secure two flags (no location provided) as proof of exploitation:
 
-- User.txt
-- Root.txt
+* User.txt
+* Root.txt
 
 Additionally, the client has provided the following scope allowances:
 
-- Ensure that you modify your hosts file to reflect internal.thm
-- Any tools or techniques are permitted in this engagement
-- Locate and note all vulnerabilities found
-- Submit the flags discovered to the dashboard
-- Only the IP address assigned to your machine is in scope
+* Ensure that you modify your hosts file to reflect internal.thm
+* Any tools or techniques are permitted in this engagement
+* Locate and note all vulnerabilities found
+* Submit the flags discovered to the dashboard
+* Only the IP address assigned to your machine is in scope
 
 (Roleplay off)
 
@@ -29,12 +31,11 @@ I encourage you to approach this challenge as an actual penetration test. Consid
 
 Note - this room can be completed without Metasploit
 
-# User Flag
+## User Flag
 
 First of all let’s do what this line in the scope allowances says:
 
 > • Ensure that you modify your hosts file to reflect internal.thm
-> 
 
 <figure><img src="../../.gitbook/assets/internal0.png" alt=""><figcaption></figcaption></figure>
 
@@ -72,7 +73,7 @@ Back to the gobuster enumeration:
 
 It discovered 2 directories that we have access to (/blog & /phpmyadmin) and other two that we have no access to (/javascript & server-status). Let’s check the first ones:
 
-### /blog
+#### /blog
 
 <figure><img src="../../.gitbook/assets/internal7.png" alt=""><figcaption></figcaption></figure>
 
@@ -112,7 +113,7 @@ hydra -l admin -P /usr/share/wordlists/rockyou.txt http://internal.thm http-post
 
 While it completes, let’s look at the other directory we found earlier:
 
-### /phpmyadmin
+#### /phpmyadmin
 
 <figure><img src="../../.gitbook/assets/internal14.png" alt=""><figcaption></figcaption></figure>
 
@@ -218,7 +219,7 @@ Let’s see if we can login in phpMyAdmin with these credentials:
 
 <figure><img src="../../.gitbook/assets/internal41.png" alt=""><figcaption></figcaption></figure>
 
-Yeah! Now we can see that the version of phpMyAdmin is 4.6.6deb5. 
+Yeah! Now we can see that the version of phpMyAdmin is 4.6.6deb5.
 
 I spent some time by looking at the tables using phpMyAdmin and also conneting through sqlclient, but apparently we cannot do anything here...
 
@@ -252,7 +253,7 @@ So, this way we found the credential of aubreanna... let’s try to change to th
 
 We got logged as aubreanna and quickly we discover the user flag.
 
-# Root.txt Flag
+## Root.txt Flag
 
 Now, let’s do all the steps we did earlier to try to do a privilege escalation in order to get root.
 
@@ -346,10 +347,7 @@ And we got a reverse shell!
 
 Let’s begin with the enumeration. We already know the jenkins admin password, so it doesn’t make sense to try to decrypt the secrets of jenkins, right?
 
-<aside>
 💡 It’s important to notice that we are not in the “same” machine as we were before. The jenkins server is running in a docker, that act’s as we were in other machine in the same network of the initial one.
-
-</aside>
 
 Let’s go to the /opt folder, as we do in the first machine to see if there is something there...
 

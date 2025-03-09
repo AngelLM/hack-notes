@@ -1,29 +1,31 @@
 # Relevant
 
+## Relevant
+
 **Date**: 06/04/2022
 
 **Difficulty**: Hard
 
 **CTF**: [https://tryhackme.com/room/relevant](https://tryhackme.com/room/relevant)
 
----
+***
 
 You have been assigned to a client that wants a penetration test conducted on an environment due to be released to production in seven days.
 
 **Scope of Work**
 
-The client requests that an engineer conducts an assessment of the provided virtual environment. The client has asked that minimal information be provided about the assessment, wanting the engagement conducted from the eyes of a malicious actor (black box penetration test).  The client has asked that you secure two flags (no location provided) as proof of exploitation:
+The client requests that an engineer conducts an assessment of the provided virtual environment. The client has asked that minimal information be provided about the assessment, wanting the engagement conducted from the eyes of a malicious actor (black box penetration test).  The client has asked that you secure two flags (no location provided) as proof of exploitation:
 
-- User.txt
-- Root.txt
+* User.txt
+* Root.txt
 
 Additionally, the client has provided the following scope allowances:
 
-- Any tools or techniques are permitted in this engagement, however we ask that you attempt manual exploitation first
-- Locate and note all vulnerabilities found
-- Submit the flags discovered to the dashboard
-- Only the IP address assigned to your machine is in scope
-- Find and report ALL vulnerabilities (yes, there is more than one path to root)
+* Any tools or techniques are permitted in this engagement, however we ask that you attempt manual exploitation first
+* Locate and note all vulnerabilities found
+* Submit the flags discovered to the dashboard
+* Only the IP address assigned to your machine is in scope
+* Find and report ALL vulnerabilities (yes, there is more than one path to root)
 
 (Roleplay off)
 
@@ -31,7 +33,7 @@ I encourage you to approach this challenge as an actual penetration test. Consid
 
 Note - Nothing in this room requires Metasploit
 
-# User Flag
+## User Flag
 
 First of all, let’s do a ping to the address:
 
@@ -79,7 +81,7 @@ Let’s check on of them:
 
 <figure><img src="../../.gitbook/assets/relevant8.png" alt=""><figcaption></figcaption></figure>
 
-Looks like everytime you try to access to a directory that starts with * the server throws you this error.
+Looks like everytime you try to access to a directory that starts with \* the server throws you this error.
 
 Without anything else discovered with gobuster, let’s see if there is any vulnerability for the `Microsoft IIS httpd 10.0`
 
@@ -147,11 +149,11 @@ Let’s see if we can use them to log in using the remote desktop server:
 
 <figure><img src="../../.gitbook/assets/relevant24.png" alt=""><figcaption></figcaption></figure>
 
-Trying to connect using Bob credentials, we receive the error: ERRCONNECT_CONNECT_TRANSPORT_FAILED
+Trying to connect using Bob credentials, we receive the error: ERRCONNECT\_CONNECT\_TRANSPORT\_FAILED
 
 <figure><img src="../../.gitbook/assets/relevant25.png" alt=""><figcaption></figcaption></figure>
 
-Trying to connect using Bill Credentials we get a different error: ERRCONNECT_PASSWORD_CERTAINLY_EXPIRED.
+Trying to connect using Bill Credentials we get a different error: ERRCONNECT\_PASSWORD\_CERTAINLY\_EXPIRED.
 
 Let’s check if any of the services exposed have any vulnerability we can exploit. To scan for this, I’ll use an nmap script
 
@@ -201,7 +203,7 @@ We got the revshell! Now, let’s look for the user flag!
 
 <figure><img src="../../.gitbook/assets/relevant36.png" alt=""><figcaption></figcaption></figure>
 
-# Root Flag
+## Root Flag
 
 Ok, let’s remember the user we are logged as:
 
@@ -215,7 +217,7 @@ Apparently, we are logged as the most powerful user in the target system, so we 
 
 That was incredible fast. Not privilege escalation needed.
 
-# Another way to get through Relevant machine.
+## Another way to get through Relevant machine.
 
 If we have finished the gobuster scan of the server located on the 49663 port, we would have find the `nt4wrksv` directory.
 

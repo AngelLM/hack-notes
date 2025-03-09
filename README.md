@@ -1,6 +1,7 @@
 ---
 icon: terminal
-cover: https://gitbookio.github.io/onboarding-template-images/header.png
+cover: >-
+  https://images.unsplash.com/photo-1597733336794-12d05021d510?crop=entropy&cs=srgb&fm=jpg&ixid=M3wxOTcwMjR8MHwxfHNlYXJjaHwxfHxpbnRlcm5ldHxlbnwwfHx8fDE3NDE1MzQyMDZ8MA&ixlib=rb-4.0.3&q=85
 coverY: 0
 layout:
   cover:
