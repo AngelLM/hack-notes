@@ -25,13 +25,11 @@ I remember when I was younger I was very interested in hackers, programming and 
 
 Here you can find writeups of the machines I have completed on platforms like **Hack The Box** or **TryHackMe**, as well as some resources that I find useful.
 
-{% embed url="https://app.hackthebox.com/profile/858487" fullWidth="false" %}
+{% embed url="https://app.hackthebox.com/profile/858487" %}
 Hack The Box Profile - angellm
 {% endembed %}
 
 {% embed url="https://tryhackme.com/p/angellm" %}
 TryHackMe Profile - angellm
 {% endembed %}
-
-<table data-view="cards"><thead><tr><th data-type="content-ref"></th></tr></thead><tbody><tr><td><a href="https://app.hackthebox.com/profile/858487">https://app.hackthebox.com/profile/858487</a></td></tr><tr><td><a href="https://tryhackme.com/p/angellm">https://tryhackme.com/p/angellm</a></td></tr></tbody></table>
 
