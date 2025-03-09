@@ -188,7 +188,7 @@ So, **josh** and **root**.
 
 There is a **jar** file on the current directory, so let’s transfer it to our machine to extract the data just in case there is anything useful.
 
-<figure><img src="../../.gitbook/assets/imagen (5) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/imagen (5) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 I don’t know if it will be useful, but we got credentials to access a database: `postgres:VXXXXXXXxR`
 
@@ -212,11 +212,11 @@ Let’s do the same for the table **users**:
 
 <figure><img src="../../.gitbook/assets/Pasted image 20231013180848.png" alt=""><figcaption></figcaption></figure>
 
-<figure><img src="../../.gitbook/assets/imagen (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/imagen (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 The passwords are encrypted, apparently in bcrypt. Let’s try to crack them using **john**:
 
-<figure><img src="../../.gitbook/assets/imagen (2) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/imagen (2) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 After a while, **john** reports a coincidence for the admin password. et’s check if that password allows us to do user pivoting:
 

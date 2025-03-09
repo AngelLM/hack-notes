@@ -20,21 +20,21 @@ This room will cover SQLi (exploiting this vulnerability manually and via SQLMap
 
 Once deployed, let’s do a quick scan with nmap:
 
-<figure><img src="../../.gitbook/assets/Untitled.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/Untitled (1).png" alt=""><figcaption></figcaption></figure>
 
 And let’s see the details of each opened port:
 
-<figure><img src="../../.gitbook/assets/Untitled 1.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/Untitled 1 (1).png" alt=""><figcaption></figcaption></figure>
 
 Let’s visit the webserver:
 
-<figure><img src="../../.gitbook/assets/Untitled 2.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/Untitled 2 (1).png" alt=""><figcaption></figcaption></figure>
 
 ### [What is the name](https://github.com/AngelLM/CTF-Writeups/blob/main/TryHackMe/2022_04_02-GameZone/readme.md#what-is-the-name-of-the-large-cartoon-avatar-holding-a-sniper-on-the-forum) [of the large cartoon avatar holding a sniper on the forum?](https://github.com/AngelLM/CTF-Writeups/blob/main/TryHackMe/2022_04_02-GameZone/readme.md#what-is-the-name-of-the-large-cartoon-avatar-holding-a-sniper-on-the-forum) <a href="#user-content-what-is-the-name-of-the-large-cartoon-avatar-holding-a-sniper-on-the-forum" id="user-content-what-is-the-name-of-the-large-cartoon-avatar-holding-a-sniper-on-the-forum"></a>
 
 I recognized the game (Hitman) but I have no idea what’s the name of the character:
 
-<figure><img src="../../.gitbook/assets/Untitled 3.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/Untitled 3 (1).png" alt=""><figcaption></figcaption></figure>
 
 ## Obtain access via SQLi <a href="#user-content-obtain-access-via-sqli" id="user-content-obtain-access-via-sqli"></a>
 
@@ -66,9 +66,9 @@ Use `' or 1=1 -- -` as your username and leave the password blank.
 
 Let’s do it and write `' or 1=1 -- -` as the username and try to log in:
 
-<figure><img src="../../.gitbook/assets/Untitled 4.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/Untitled 4 (1).png" alt=""><figcaption></figcaption></figure>
 
-<figure><img src="../../.gitbook/assets/Untitled 5.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/Untitled 5 (1).png" alt=""><figcaption></figcaption></figure>
 
 We log in and it redirects us to /portal.php page.
 
@@ -84,11 +84,11 @@ Using the page we logged into earlier, we’re going point SQLMap to the game re
 
 First we need to intercept a request made to the search feature using [BurpSuite](https://tryhackme.com/room/learnburp).
 
-<figure><img src="../../.gitbook/assets/Untitled 6.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/Untitled 6 (1).png" alt=""><figcaption></figcaption></figure>
 
 Save this request into a text file.
 
-<figure><img src="../../.gitbook/assets/Untitled 7.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/Untitled 7 (1).png" alt=""><figcaption></figcaption></figure>
 
 ### In the users table, what is the hashed password? What was the username associated with the hashed password? <a href="#user-content-in-the-users-table-what-is-the-hashed-password-what-was-the-username-associated-with-th" id="user-content-in-the-users-table-what-is-the-hashed-password-what-was-the-username-associated-with-th"></a>
 
@@ -98,11 +98,11 @@ SQLMap will now try different methods and identify the one thats vulnerable. Eve
 
 <figure><img src="../../.gitbook/assets/Untitled 8.png" alt=""><figcaption></figcaption></figure>
 
-<figure><img src="../../.gitbook/assets/Untitled 9.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/Untitled 9 (1).png" alt=""><figcaption></figcaption></figure>
 
 ### What was the other table name? <a href="#user-content-what-was-the-other-table-name" id="user-content-what-was-the-other-table-name"></a>
 
-<figure><img src="../../.gitbook/assets/Untitled 10.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/Untitled 10 (1).png" alt=""><figcaption></figcaption></figure>
 
 ## Cracking a password with JohnTheRipper <a href="#user-content-cracking-a-password-with-johntheripper" id="user-content-cracking-a-password-with-johntheripper"></a>
 
@@ -124,11 +124,11 @@ Once you have JohnTheRipper installed you can run it against your hash using the
 
 ### What is the de-hashed password? <a href="#user-content-what-is-the-de-hashed-password" id="user-content-what-is-the-de-hashed-password"></a>
 
-<figure><img src="../../.gitbook/assets/Untitled 11.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/Untitled 11 (1).png" alt=""><figcaption></figcaption></figure>
 
 ### Now you have a password and username. Try SSH’ing onto the machine. What is the user flag? <a href="#user-content-now-you-have-a-password-and-username-try-sshing-onto-the-machine-what-is-the-user-flag" id="user-content-now-you-have-a-password-and-username-try-sshing-onto-the-machine-what-is-the-user-flag"></a>
 
-<figure><img src="../../.gitbook/assets/Untitled 12.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/Untitled 12 (1).png" alt=""><figcaption></figcaption></figure>
 
 ## Exposing services with reverse SSH tunnels <a href="#user-content-exposing-services-with-reverse-ssh-tunnels" id="user-content-exposing-services-with-reverse-ssh-tunnels"></a>
 
@@ -151,17 +151,17 @@ If we run `ss -tulpn` it will tell us what socket connections are running
 
 ### How many TCP sockets are running? <a href="#user-content-how-manytcpsockets-are-running" id="user-content-how-manytcpsockets-are-running"></a>
 
-<figure><img src="../../.gitbook/assets/Untitled 13.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/Untitled 13 (1).png" alt=""><figcaption></figcaption></figure>
 
 We can see that a service running on port 10000 is blocked via a firewall rule from the outside (we can see this from the IPtable list). However, Using an SSH Tunnel we can expose the port to us (locally)!
 
 From our local machine, run `ssh -L 10000:localhost:10000 <username>@<ip>`
 
-<figure><img src="../../.gitbook/assets/Untitled 14.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/Untitled 14 (1).png" alt=""><figcaption></figcaption></figure>
 
 Once complete, in your browser type “localhost:10000” and you can access the newly-exposed webserver.
 
-<figure><img src="../../.gitbook/assets/Untitled 15.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/Untitled 15 (1).png" alt=""><figcaption></figcaption></figure>
 
 ### What is the name of the exposed CMS? <a href="#user-content-what-is-the-name-of-the-exposed-cms" id="user-content-what-is-the-name-of-the-exposed-cms"></a>
 
@@ -171,7 +171,7 @@ I guess it’s Webmin
 
 There is nothing about the version written in the source code of the login page, so I’m going to try to login using the credentials we have.
 
-<figure><img src="../../.gitbook/assets/Untitled 16.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/Untitled 16 (1).png" alt=""><figcaption></figcaption></figure>
 
 The credentials are valid and we enter in the webmin landpage, where we can see the CMS version.
 
@@ -183,14 +183,14 @@ Using the CMS dashboard version, use Metasploit to find a payload to execute aga
 
 First of all, lets open msfconsole:
 
-<figure><img src="../../.gitbook/assets/Untitled 17.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/Untitled 17 (1).png" alt=""><figcaption></figcaption></figure>
 
 Now, let’s search for exploits for webmin 1.58:
 
-<figure><img src="../../.gitbook/assets/Untitled 18.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/Untitled 18 (1).png" alt=""><figcaption></figcaption></figure>
 
 There are two. The second one says will allow us to download files from the target, cool! Let’s use it:
 
-<figure><img src="../../.gitbook/assets/Untitled 19.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/Untitled 19 (1).png" alt=""><figcaption></figcaption></figure>
 
 This way we acomplished to download the root.txt containing the root flag!

