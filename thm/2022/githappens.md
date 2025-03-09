@@ -1,4 +1,10 @@
-# Git Happens - Writeup
+---
+description: '#exposed credentials, #git'
+---
+
+# GitHappens
+
+## Git Happens - Writeup
 
 **Date**: 26/03/2022
 
@@ -6,11 +12,11 @@
 
 **CTF**: [https://tryhackme.com/room/githappens](https://tryhackme.com/room/githappens)
 
----
+***
 
 Boss wanted me to create a prototype, so here it is! We even used something called "version control" that made deploying this really easy!
 
-# Can you find the password to the application?
+## Can you find the password to the application?
 
 First thing first, let’s do a nmap scan of the target to discover open ports:
 

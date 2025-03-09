@@ -1,4 +1,10 @@
-# Res - Writeup
+---
+description: '#cracking, #linux, #rce, #redis, #sudo, #SUID'
+---
+
+# Res
+
+## Res - Writeup
 
 **Date**: 27/03/2022
 
@@ -6,19 +12,19 @@
 
 **CTF**: [https://tryhackme.com/room/res](https://tryhackme.com/room/res)
 
----
+***
 
 Hack into a vulnerable database server with an in-memory data-structure in this semi-guided challenge!
 
-# Scan the machine, how many ports are open?
+## Scan the machine, how many ports are open?
 
 <figure><img src="../../.gitbook/assets/res0.png" alt=""><figcaption></figcaption></figure>
 
-# What’s the database management system installed on the server? What port is the database management system running on?What's is the version of management system installed on the server?
+## What’s the database management system installed on the server? What port is the database management system running on?What's is the version of management system installed on the server?
 
 <figure><img src="../../.gitbook/assets/res1.png" alt=""><figcaption></figcaption></figure>
 
-# Compromise the machine and locate user.txt
+## Compromise the machine and locate user.txt
 
 First of all, let’s visit the webpage hosted on the port 80:
 
@@ -30,7 +36,7 @@ As we have seen, there is a redis server running on port 6379. After some readin
 
 Let’s download the redis application:
 
-[https://redis.io/docs/getting-started/](https://redis.io/docs/getting-started/) 
+[https://redis.io/docs/getting-started/](https://redis.io/docs/getting-started/)
 
 [https://redis.io/docs/manual/cli/](https://redis.io/docs/manual/cli/)
 
@@ -84,13 +90,13 @@ Let’s try with this other one-line php reverse shell:
 
 <figure><img src="../../.gitbook/assets/res13.png" alt=""><figcaption></figcaption></figure>
 
-Yeah, this one works! 
+Yeah, this one works!
 
 <figure><img src="../../.gitbook/assets/res24.png" alt=""><figcaption></figcaption></figure>
 
 We found the key file in the /home/vianka folder.
 
-# What is the local user account password?
+## What is the local user account password?
 
 Before anything, let’s try to stabilize this shell:
 
@@ -134,7 +140,7 @@ Unshadow done, now let’s crack it!
 
 Cool!
 
-# Escalate privileges and obtain root.txt
+## Escalate privileges and obtain root.txt
 
 Let’s login as vianka and see if we have more permissions:
 

@@ -1,4 +1,10 @@
-# StuxCTF - Writeup
+---
+description: '#cryptography, #linux, #serialization, #sudo'
+---
+
+# StuxCTF
+
+## StuxCTF - Writeup
 
 **Date**: 19/01/2025
 
@@ -8,9 +14,9 @@
 
 Crypto, serealization, priv scalation and more ...!
 
----
+***
 
-# Discovery
+## Discovery
 
 First of all, let’s test the communication with the target machine:
 
@@ -52,10 +58,9 @@ There is cool info here too. First of all, there is a comment “Diffie-Hellman�
 
 <figure><img src="../../.gitbook/assets/stuxctf8.png" alt=""><figcaption></figcaption></figure>
 
-Mmm… It doesn’t exists. After searching the term “Diffie-Hellman” to see what it means, I found [this article in Wikipedia](https://en.wikipedia.org/wiki/Diffie–Hellman_key_exchange).
+Mmm… It doesn’t exists. After searching the term “Diffie-Hellman” to see what it means, I found [this article in Wikipedia](https://en.wikipedia.org/wiki/Diffie%E2%80%93Hellman_key_exchange).
 
-> **Diffie–Hellman** (**DH**) **key exchange**[[nb 1]](https://en.wikipedia.org/wiki/Diffie%E2%80%93Hellman_key_exchange#cite_note-1) is a mathematical [method](https://en.wikipedia.org/wiki/Key-agreement_protocol) of securely generating a symmetric [cryptographic key](https://en.wikipedia.org/wiki/Cryptographic_key) over a public channel and was one of the first [public-key protocols](https://en.wikipedia.org/wiki/Public-key_cryptography) as conceived by [Ralph Merkle](https://en.wikipedia.org/wiki/Ralph_Merkle) and named after [Whitfield Diffie](https://en.wikipedia.org/wiki/Whitfield_Diffie) and [Martin Hellman](https://en.wikipedia.org/wiki/Martin_Hellman).
-> 
+> **Diffie–Hellman** (**DH**) **key exchange**[\[nb 1\]](https://en.wikipedia.org/wiki/Diffie%E2%80%93Hellman_key_exchange#cite_note-1) is a mathematical [method](https://en.wikipedia.org/wiki/Key-agreement_protocol) of securely generating a symmetric [cryptographic key](https://en.wikipedia.org/wiki/Cryptographic_key) over a public channel and was one of the first [public-key protocols](https://en.wikipedia.org/wiki/Public-key_cryptography) as conceived by [Ralph Merkle](https://en.wikipedia.org/wiki/Ralph_Merkle) and named after [Whitfield Diffie](https://en.wikipedia.org/wiki/Whitfield_Diffie) and [Martin Hellman](https://en.wikipedia.org/wiki/Martin_Hellman).
 
 <figure><img src="../../.gitbook/assets/stuxctf9.png" alt=""><figcaption></figcaption></figure>
 
@@ -71,10 +76,9 @@ To do so, I will follow the following steps:
 
 1. Carol has already calculated gc, so she sends it to alice.
 2. Alice will calculate `gca = gc^a mod p` and send it to bob.
-3. Bob will calculate `gcab = gca^b mod p` which will be the common secret.
-    
+3.  Bob will calculate `gcab = gca^b mod p` which will be the common secret.
+
     <figure><img src="../../.gitbook/assets/stuxctf11.png" alt=""><figcaption></figcaption></figure>
-    
 
 I tried using the value of the secret as the name of the secret folder, but the page said that it doesn’t exists.
 
@@ -188,7 +192,7 @@ This part of the code is checking if the file requested exists. It is also ensur
 unserialize(file_get_contents($file_name));<br />
 ```
 
-And finally, this line. This seems to unserialize the content of a file. This file happens to be the $file_name, which is the value of the parameter “file” we can insert via URL.
+And finally, this line. This seems to unserialize the content of a file. This file happens to be the $file\_name, which is the value of the parameter “file” we can insert via URL.
 
 There is a vulnerability related to PHP unserialization ([PayloadAllTheThings](https://github.com/swisskyrepo/PayloadsAllTheThings/blob/master/Insecure%20Deserialization/PHP.md#object-injection))
 
@@ -226,7 +230,7 @@ This will create a new file called code.php in the target machine, and its conte
 
 Then I’ll open that code.php, so the request will take place:
 
-`http://TargetIP/SecretFolder/code.php` 
+`http://TargetIP/SecretFolder/code.php`
 
 <figure><img src="../../.gitbook/assets/stuxctf20.png" alt=""><figcaption></figcaption></figure>
 
@@ -234,7 +238,7 @@ After doing that, I can see that the file minirevshell.php has been requested fr
 
 And open in the web-browser the file minirevshell.php
 
-`http://TargetIP/SecretFolder/minirevshell.php` 
+`http://TargetIP/SecretFolder/minirevshell.php`
 
 <figure><img src="../../.gitbook/assets/stuxctf21.png" alt=""><figcaption></figcaption></figure>
 

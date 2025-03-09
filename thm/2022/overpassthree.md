@@ -1,7 +1,12 @@
-# Overpass 3 - Writeup
+---
+description: '#enumeration, #exposed credentials, #ftp, #linux, #nfs, #SSH tunneling'
+---
 
-After Overpass's rocky start in infosec, and the commercial failure of their password manager and subsequent hack, they've decided to try a new business venture.
-Overpass has become a web hosting company!Unfortunately, they haven't learned from their past mistakes. Rumour has it, their main web server is extremely vulnerable.
+# Overpass3
+
+## Overpass 3 - Writeup
+
+After Overpass's rocky start in infosec, and the commercial failure of their password manager and subsequent hack, they've decided to try a new business venture. Overpass has become a web hosting company!Unfortunately, they haven't learned from their past mistakes. Rumour has it, their main web server is extremely vulnerable.
 
 **Date**: 18/03/2022
 
@@ -9,9 +14,9 @@ Overpass has become a web hosting company!Unfortunately, they haven't learned fr
 
 **CTF**: [https://tryhackme.com/room/overpass3hosting](https://tryhackme.com/room/overpass3hosting)
 
----
+***
 
-# Web Flag
+## Web Flag
 
 First of all, let’s do a common ports nmap scan of the target:
 
@@ -65,7 +70,7 @@ Yep, we can access to the ftp server using paradox credentials!
 
 <figure><img src="../../.gitbook/assets/overpassthree12.png" alt=""><figcaption></figcaption></figure>
 
-This user only has access to the contents of the /backup folder we discover previously... Nothing new here. Before anything else, let’s try the rest of the users credentials: 
+This user only has access to the contents of the /backup folder we discover previously... Nothing new here. Before anything else, let’s try the rest of the users credentials:
 
 <figure><img src="../../.gitbook/assets/overpassthree13.png" alt=""><figcaption></figcaption></figure>
 
@@ -95,9 +100,9 @@ After some time looking for a folder called “apache” without any success, I 
 
 <figure><img src="../../.gitbook/assets/overpassthree19.png" alt=""><figcaption></figcaption></figure>
 
-## User Flag
+### User Flag
 
-I guess that the user we are looking for is james. 
+I guess that the user we are looking for is james.
 
 I though about trying to switch the user to paradox using `su paradox` as we know its password:
 
@@ -124,7 +129,7 @@ Now we should have a stable shell. Let’s try again to switch the user to parad
 
 <figure><img src="../../.gitbook/assets/overpassthree22.png" alt=""><figcaption></figcaption></figure>
 
-Yeah, now we can. Would we have permissions to read the /root folder? 
+Yeah, now we can. Would we have permissions to read the /root folder?
 
 <figure><img src="../../.gitbook/assets/overpassthree23.png" alt=""><figcaption></figcaption></figure>
 
@@ -146,11 +151,11 @@ Without any much to do here, let’s start with the enumeration. I’m going to 
 
 <figure><img src="../../.gitbook/assets/overpassthree27.png" alt=""><figcaption></figcaption></figure>
 
-First thing catches my eye is that there are some /home/paradox folders in the path. But as there are not conjob and no script with SUID permissions that execute any binary in the path... It is not useful :( 
+First thing catches my eye is that there are some /home/paradox folders in the path. But as there are not conjob and no script with SUID permissions that execute any binary in the path... It is not useful :(
 
 <figure><img src="../../.gitbook/assets/overpassthree28.png" alt=""><figcaption></figcaption></figure>
 
-The other thing that Linpeas found is that there is an NFS in /home/james with the no_root_squash option activated, which is a potential point of entry.
+The other thing that Linpeas found is that there is an NFS in /home/james with the no\_root\_squash option activated, which is a potential point of entry.
 
 <figure><img src="../../.gitbook/assets/overpassthree29.png" alt=""><figcaption></figcaption></figure>
 
@@ -166,11 +171,11 @@ Up to this point and without a clue about how can I continue I check up a writeu
 
 Aparently we can use a tecnique named SSH tunneling (SSH Port Forwarding) to stablish a “local connection” between our machine and the target machine. This way we could connect to the locally accesible NFS.
 
-To do it, we would need to connect to the target machine via ssh, so we need to find or create some credentials. Let’s take a look into the paradox .ssh folder: 
+To do it, we would need to connect to the target machine via ssh, so we need to find or create some credentials. Let’s take a look into the paradox .ssh folder:
 
 <figure><img src="../../.gitbook/assets/overpassthree32.png" alt=""><figcaption></figcaption></figure>
 
-There is a public key and the autorized_keys file, but there is not a private key that we can use, so we can create a new one:
+There is a public key and the autorized\_keys file, but there is not a private key that we can use, so we can create a new one:
 
 ```jsx
 ssh-keygen -f paradox
@@ -178,7 +183,7 @@ ssh-keygen -f paradox
 
 <figure><img src="../../.gitbook/assets/overpassthree33.png" alt=""><figcaption></figcaption></figure>
 
-Now we have to insert the public key into the authorized_keys file:
+Now we have to insert the public key into the authorized\_keys file:
 
 ```jsx
 cat paradox.pub >> authorized_keys
@@ -220,7 +225,7 @@ sudo mount -t nfs localhost:/ nfs
 
 <figure><img src="../../.gitbook/assets/overpassthree40.png" alt=""><figcaption></figcaption></figure>
 
-# Root flag
+## Root flag
 
 To escalate to root privileges, we can create a binary with the SUID bit activated taking advance of our NFS connection:
 

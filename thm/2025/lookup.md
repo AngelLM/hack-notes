@@ -1,4 +1,10 @@
-# Lookup - Writeup
+---
+description: '#brute-force, #cve, #linux, #path hijacking, #SGID, #sudo'
+---
+
+# Lookup
+
+## Lookup - Writeup
 
 **Date**: 23/01/2025
 
@@ -8,9 +14,9 @@
 
 Test your enumeration skills on this boot-to-root machine.
 
----
+***
 
-# Discovery
+## Discovery
 
 Let’s start by testing the connection to the target machine using **ping**:
 
@@ -26,8 +32,8 @@ The scan discovered two open TCP ports: 22 (SSH) and 80 (HTTP). Let’s do a fur
 
 <figure><img src="../../.gitbook/assets/lookup2.png" alt=""><figcaption></figcaption></figure>
 
-- 22: OpenSSH 8.2p1
-- 80: Apache 2.4.41 (redirection to http://lookup.thm)
+* 22: OpenSSH 8.2p1
+* 80: Apache 2.4.41 (redirection to http://lookup.thm)
 
 <figure><img src="../../.gitbook/assets/lookup3.png" alt=""><figcaption></figcaption></figure>
 
@@ -109,7 +115,7 @@ And after a while it also found a user named **jose**. Let’s see if we have mo
 
 <figure><img src="../../.gitbook/assets/lookup23.png" alt=""><figcaption></figcaption></figure>
 
-It found valid credentials! Let’s try to log in. 
+It found valid credentials! Let’s try to log in.
 
 <figure><img src="../../.gitbook/assets/lookup24.png" alt=""><figcaption></figcaption></figure>
 
@@ -129,11 +135,11 @@ It displays some text files, that we can read.
 
 <figure><img src="../../.gitbook/assets/lookup28.png" alt=""><figcaption></figcaption></figure>
 
-Most of them have random words in their content, but the content of **credentials.txt** makes me think that there is a user called **think.** And maybe the credentials are: `think:nopassword`: 
+Most of them have random words in their content, but the content of **credentials.txt** makes me think that there is a user called **think.** And maybe the credentials are: `think:nopassword`:
 
 <figure><img src="../../.gitbook/assets/lookup29.png" alt=""><figcaption></figcaption></figure>
 
-The file **thislogin.txt** contains the credentials of the user **jose:** 
+The file **thislogin.txt** contains the credentials of the user **jose:**
 
 <figure><img src="../../.gitbook/assets/lookup30.png" alt=""><figcaption></figcaption></figure>
 
@@ -143,7 +149,7 @@ Let’s extract some info from this web file manager clicking the About button:
 
 <figure><img src="../../.gitbook/assets/lookup31.png" alt=""><figcaption></figcaption></figure>
 
-# Exploitation
+## Exploitation
 
 The name of this software is **elFinder** and its version is 2.1.47. Let’s use **searchsploit** to check for possible vulnerabilities of it:
 
@@ -157,7 +163,7 @@ We are inside the target machine! Let’s find the user flag:
 
 <figure><img src="../../.gitbook/assets/lookup34.png" alt=""><figcaption></figcaption></figure>
 
-The **user.txt** is not readable by the current user. 
+The **user.txt** is not readable by the current user.
 
 Also, the reverse shell we obtained is not very interactive… So let’s see if we can transfer a PHP file to obtain a better reverse shell:
 
@@ -167,7 +173,7 @@ After the transfer, we can go to [http://files.lookup.thm/elFinder/php/minirevsh
 
 <figure><img src="../../.gitbook/assets/lookup36.png" alt=""><figcaption></figcaption></figure>
 
-Much better, now we have to search for a way to log in as **root** or **think** user. Let’s  take a look at the **login.php** file:
+Much better, now we have to search for a way to log in as **root** or **think** user. Let’s take a look at the **login.php** file:
 
 <figure><img src="../../.gitbook/assets/lookup37.png" alt=""><figcaption></figcaption></figure>
 
@@ -217,7 +223,7 @@ Oh! Yes, we can! I added the /tmp directory at the beginning of PATH, so if we c
 
 After some tries, I realized that the pwm binary is using id to determine the user that is executing the binary and then, using his name to fill the command that uses the line `/home/%s/.passwords`.
 
-So, knowing that, I created an executable called `id` in **/tmp** folder that executes `/usr/bin/id think` to fool the pwm binary.  
+So, knowing that, I created an executable called `id` in **/tmp** folder that executes `/usr/bin/id think` to fool the pwm binary.
 
 <figure><img src="../../.gitbook/assets/lookup47.png" alt=""><figcaption></figcaption></figure>
 
@@ -231,7 +237,7 @@ Yeah, we found valid credentials to log in via SSH
 
 And here we have the user flag!
 
-# Privilege Escalation
+## Privilege Escalation
 
 Let’s see the sudo permissions of this user:
 

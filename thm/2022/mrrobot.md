@@ -1,4 +1,10 @@
-# Mr. Robot CTF - Writeup
+---
+description: '#cracking, #enumeration, #hydra, #linux, #SUID'
+---
+
+# MrRobot
+
+## Mr. Robot CTF - Writeup
 
 Can you root this Mr. Robot styled machine? This is a virtual machine meant for beginners/intermediate users. There are 3 hidden keys located on the machine, can you find them?
 
@@ -8,7 +14,7 @@ Can you root this Mr. Robot styled machine? This is a virtual machine meant for 
 
 **CTF**: [https://tryhackme.com/room/mrrobot](https://tryhackme.com/room/mrrobot)
 
-# What is key 1?
+## What is key 1?
 
 First of all, let’s do a quick scan of the open ports of the target:
 
@@ -28,27 +34,27 @@ The target has a http server running on port 80, let’s visit the IP address wi
 
 It shows a webpage that looks like a console, let’s see what each command does:
 
-### prepare
+#### prepare
 
 It shows us a video and a link to a webpage: whoismrrobot.com
 
-### fsociety
+#### fsociety
 
 It shows a video asking us if we are ready to join fsociety.
 
-### inform
+#### inform
 
 It shows a bunch of news and mr.robot comment’s
 
-### question
+#### question
 
 It shows some images, nothing interesting
 
-### wakeup
+#### wakeup
 
 It shows a video.
 
-### join
+#### join
 
 After some text, it asks for my mail adress
 
@@ -76,7 +82,7 @@ The website has created some cookies for us:
 
 We have not received any email in the last 10 minutes, so let’s begin with the enumeration of the webpage:
 
-`ffuf -w /usr/share/wordlists/wfuff/general/common.txt -u http://10.10.212.107/FUZZ -L --hs 404` 
+`ffuf -w /usr/share/wordlists/wfuff/general/common.txt -u http://10.10.212.107/FUZZ -L --hs 404`
 
 <figure><img src="../../.gitbook/assets/mrrobot7.png" alt=""><figcaption></figcaption></figure>
 
@@ -130,7 +136,7 @@ Looks like the key we were looking for!
 
 The .dic file has to be downloaded.
 
-# What is key 2?
+## What is key 2?
 
 <figure><img src="../../.gitbook/assets/mrrobot18.png" alt=""><figcaption></figcaption></figure>
 
@@ -362,7 +368,7 @@ Yeah! logged as robot! Now we can see the 2nd key file!
 
 <figure><img src="../../.gitbook/assets/mrrobot67.png" alt=""><figcaption></figcaption></figure>
 
-# What is key 1?
+## What is key 1?
 
 Let’s go for the final key. Where it would be, I’ll quickly check the /root folder:
 
@@ -396,7 +402,7 @@ Maybe a login appears in the history?
 
 Nah, it’s all mine.
 
-There is any interesting file with the SUID bit activated? 
+There is any interesting file with the SUID bit activated?
 
 <figure><img src="../../.gitbook/assets/mrrobot74.png" alt=""><figcaption></figcaption></figure>
 

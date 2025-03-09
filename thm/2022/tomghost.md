@@ -1,4 +1,10 @@
-# tomghost CTF - Writeup
+---
+description: '#apache, #cracking, #linux, #sudo'
+---
+
+# TomGhost
+
+## tomghost CTF - Writeup
 
 Are you able to complete the challenge?
 
@@ -8,7 +14,7 @@ Are you able to complete the challenge?
 
 **CTF**: [https://tryhackme.com/room/tomghost](https://tryhackme.com/room/tomghost)
 
-# Compromise this machine and obtain user.txt
+## Compromise this machine and obtain user.txt
 
 First of all, let’s do a quick scan of the open ports of the target:
 
@@ -90,7 +96,7 @@ Let’s see if we can read it with the current user:
 
 Yes, we can and that’s how we get the first flag of this CTF.
 
-# Escalate privileges and obtain root.txt
+## Escalate privileges and obtain root.txt
 
 It’s unlikely, but let’s see if we can find the root.txt file with the current user:
 

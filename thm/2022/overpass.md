@@ -1,4 +1,10 @@
+---
+description: '#cracking, #cronjob, #linux, #path hijacking'
+---
+
 # Overpass
+
+## Overpass
 
 **Date**: 15/03/2022
 
@@ -6,16 +12,16 @@
 
 **CTF**: [https://tryhackme.com/room/overpass](https://tryhackme.com/room/overpass)
 
----
+***
 
-What happens when a group of broke Computer Science students try to make a password manager?Obviously a *perfect* commercial success!
+What happens when a group of broke Computer Science students try to make a password manager?Obviously a _perfect_ commercial success!
 
-## Tasks:
+### Tasks:
 
 1. Hack the machine and get the flag in user.txt
 2. Escalate your privileges and get the flag in root.txt
 
-# Writeup
+## Writeup
 
 First of all, let’s scan the target using nmap:
 
@@ -41,7 +47,7 @@ Nothing interesting. But we have discovered the existence of some folders: `/abo
 
 The Staff names could be usernames, so let’s remember them: Ninja, Pars, Szymex, Bee, MuirlandOracle.
 
-`/downloads` 
+`/downloads`
 
 In this page we can download the binaries of the Overpass software, the source code and what it seems to be a compiling script.
 
@@ -53,7 +59,7 @@ In the source code of the html page, we discover two new folders: `/builds` y `/
 
 <figure><img src="../../.gitbook/assets/overpass5.png" alt=""><figcaption></figcaption></figure>
 
-`/src` 
+`/src`
 
 <figure><img src="../../.gitbook/assets/overpass6.png" alt=""><figcaption></figcaption></figure>
 
@@ -61,9 +67,9 @@ In the source code of the html page, we discover two new folders: `/builds` y `/
 
 <figure><img src="../../.gitbook/assets/overpass7.png" alt=""><figcaption></figcaption></figure>
 
- This page contains an Index of image files. But none of them seems to be interesting.
+This page contains an Index of image files. But none of them seems to be interesting.
 
-`/css` 
+`/css`
 
 <figure><img src="../../.gitbook/assets/overpass8.png" alt=""><figcaption></figcaption></figure>
 
@@ -79,8 +85,7 @@ There is a login form. I’m going to try the username Ninja and for the passwor
 
 No, it doesn’t work. I had to try...
 
-I try with XSS (using a simple alert script) and nothing happens.
-I try with SQL injection, writing `'OR 1=1;--` in both username and password fields but nothing occurs.
+I try with XSS (using a simple alert script) and nothing happens. I try with SQL injection, writing `'OR 1=1;--` in both username and password fields but nothing occurs.
 
 Maybe I have not discovered every accesible folder of the website, let’s scan it using gobuster:
 
@@ -162,7 +167,7 @@ Let’s reload the login page and see if it works”:
 
 Yay! It shows us a RSA key with a message for James.
 
-Let’s save the key in the file id_rsa and try to login via ssh using the username james and the id_rsa key.
+Let’s save the key in the file id\_rsa and try to login via ssh using the username james and the id\_rsa key.
 
 <figure><img src="../../.gitbook/assets/overpass14.png" alt=""><figcaption></figcaption></figure>
 
@@ -275,7 +280,7 @@ I have write privileges in the /etc/host file. So let’s modify it and place ou
 
 After modifying the file I have tested the connection by simply doing a ping to the overpass.thm domain.
 
-Now let’s create a malicious script in our machine, we would have to replicate the folder schema of the original domain. 
+Now let’s create a malicious script in our machine, we would have to replicate the folder schema of the original domain.
 
 <figure><img src="../../.gitbook/assets/overpass33.png" alt=""><figcaption></figcaption></figure>
 

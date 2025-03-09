@@ -24,7 +24,6 @@
   * [Analytics](htb/2023/analytics.md)
   * [Sau](htb/2023/sau.md)
   * [Blocky](htb/2023/blocky.md)
-* [2024](htb/2024.md)
 
 ## THM
 
@@ -36,6 +35,7 @@
   * [Overpass2](thm/2022/overpasstwo.md)
   * [Overpass3](thm/2022/overpassthree.md)
   * [Res](thm/2022/res.md)
+  * [Alfred](thm/2022/alfred.md)
   * [TomGhost](thm/2022/tomghost.md)
 * [2025](thm/2025/README.md)
   * [AgentSudo](thm/2025/agentsudo.md)

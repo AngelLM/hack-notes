@@ -1,4 +1,8 @@
-# Light - Writeup
+---
+description: '#sqli, #sqlite'
+---
+
+# Light
 
 **Date**: 09/02/2025
 
@@ -12,9 +16,9 @@ I am working on a database application called Light! Would you like to try it ou
 
 If so, the application is running on **port 1337**. You can connect to it using `nc 10.10.238.192 1337`. You can use the username `smokey` in order to get started.
 
----
+***
 
-Let’s start by connecting via **netcat** to the target machine using the port 1337 as it’s said in the machine’s description. 
+Let’s start by connecting via **netcat** to the target machine using the port 1337 as it’s said in the machine’s description.
 
 <figure><img src="../../.gitbook/assets/light0.png" alt=""><figcaption></figcaption></figure>
 
@@ -24,7 +28,7 @@ It looks like a client that asks you for an username and, if it exists, it retur
 smokey:vYQ5ngPpw8AdUmL
 ```
 
-Let’s do a port scan to see if there is any other service running on the target machine: 
+Let’s do a port scan to see if there is any other service running on the target machine:
 
 <figure><img src="../../.gitbook/assets/light1.png" alt=""><figcaption></figcaption></figure>
 
@@ -36,8 +40,7 @@ And it’s using OpenSSH, so let’s try to log in using the smokey credentials:
 
 <figure><img src="../../.gitbook/assets/light3.png" alt=""><figcaption></figcaption></figure>
 
-Too easy to be true. 
-As this client asks for a username, and if it exists returns a message with the password I asked ChatGPT for a simple bash program that will read from a username list file, send each username to the client and wait for the response.
+Too easy to be true. As this client asks for a username, and if it exists returns a message with the password I asked ChatGPT for a simple bash program that will read from a username list file, send each username to the client and wait for the response.
 
 ```php
 #!/bin/bash
@@ -140,7 +143,7 @@ I also noticed that my query was not correct, so I fixed it to be `smokey' Union
 
 <figure><img src="../../.gitbook/assets/light7.png" alt=""><figcaption></figcaption></figure>
 
-And the client reported that the database has no the table **information_schema.schemata**. It might mean that the database is not using MySQL and maybe is using SQL Lite. According to this page of [PayloadsAllTheThings](https://github.com/swisskyrepo/PayloadsAllTheThings/blob/master/SQL%20Injection/SQLite%20Injection.md#sqlite-enumeration) we can extract the database table name by using the query `SELECT tbl_name FROM sqlite_master WHERE type='table'`, so let’s try it:
+And the client reported that the database has no the table **information\_schema.schemata**. It might mean that the database is not using MySQL and maybe is using SQL Lite. According to this page of [PayloadsAllTheThings](https://github.com/swisskyrepo/PayloadsAllTheThings/blob/master/SQL%20Injection/SQLite%20Injection.md#sqlite-enumeration) we can extract the database table name by using the query `SELECT tbl_name FROM sqlite_master WHERE type='table'`, so let’s try it:
 
 `Smokey' Union Select tbl_name From sqlite_master Where type='table`
 

@@ -1,4 +1,10 @@
-# Overpass 2 - Writeup
+---
+description: '#cracking, #forensics, #linux, #soc, #SUID, #wireshark'
+---
+
+# Overpass2
+
+## Overpass 2 - Writeup
 
 Overpass has been hacked! The SOC team (Paradox, congratulations on the promotion) noticed suspicious activity on a late night shift while looking at shibes, and managed to capture packets as the attack happened.
 
@@ -10,11 +16,11 @@ Can you work out how the attacker got in, and hack your way back into Overpass' 
 
 **CTF**: [https://tryhackme.com/room/overpass2hacked](https://tryhackme.com/room/overpass2hacked)
 
----
+***
 
-# Forensics - Analyse the PCAP
+## Forensics - Analyse the PCAP
 
-## What was the URL of the page they used to upload a reverse shell?
+### What was the URL of the page they used to upload a reverse shell?
 
 First of all I downloaded the file available with this room and open it using Wireshark.
 
@@ -24,7 +30,7 @@ After reading a few registers, it seems like the url used to upload the reverse 
 
 <figure><img src="../../.gitbook/assets/overpasstwo1.png" alt=""><figcaption></figcaption></figure>
 
-## What payload did the attacker use to gain access?
+### What payload did the attacker use to gain access?
 
 Let’s analyze the POST petition:
 
@@ -40,13 +46,13 @@ Two registers after, we can see the entered password in clear text:
 
 <figure><img src="../../.gitbook/assets/overpasstwo4.png" alt=""><figcaption></figcaption></figure>
 
-## How did the attacker establish persistence?
+### How did the attacker establish persistence?
 
 It looks like the hacker has cloned a GitHub repository called ‘’backdoor’:
 
 <figure><img src="../../.gitbook/assets/overpasstwo5.png" alt=""><figcaption></figcaption></figure>
 
-## Using the fasttrack wordlist, how many of the system passwords were crackable?
+### Using the fasttrack wordlist, how many of the system passwords were crackable?
 
 The hacker performed a cat /etc/passwd and cat /etc/shadow revealing the following information:
 
@@ -91,11 +97,11 @@ Let’s copy the shadow file information into a file in our system and crack it 
 
 <figure><img src="../../.gitbook/assets/overpasstwo6.png" alt=""><figcaption></figcaption></figure>
 
-# Research - Analyse the code
+## Research - Analyse the code
 
 Now that you've found the code for the backdoor, it's time to analyse it.
 
-## What's the default hash for the backdoor?
+### What's the default hash for the backdoor?
 
 First of all, let’s go to the backdoor repository to analyse the code: [https://github.com/NinjaJc01/ssh-backdoor](https://github.com/NinjaJc01/ssh-backdoor)
 
@@ -105,9 +111,9 @@ Inside the code of the main.go file a hash can be found:
 
 <figure><img src="../../.gitbook/assets/overpasstwo8.png" alt=""><figcaption></figcaption></figure>
 
-## What's the hardcoded salt for the backdoor?
+### What's the hardcoded salt for the backdoor?
 
-In the same files, this can be found: 
+In the same files, this can be found:
 
 <figure><img src="../../.gitbook/assets/overpasstwo9.png" alt=""><figcaption></figcaption></figure>
 
@@ -117,7 +123,7 @@ Where verifyPass is:
 
 So it belongs to a hardcoded salt.
 
-## What was the hash that the attacker used? - go back to the PCAP for this!
+### What was the hash that the attacker used? - go back to the PCAP for this!
 
 In the top lines of the main.go code, we can se that:
 
@@ -129,7 +135,7 @@ Now, back to Wireshark, let’s see how the hacker ran the backdoor:
 
 <figure><img src="../../.gitbook/assets/overpasstwo12.png" alt=""><figcaption></figcaption></figure>
 
-## Crack the hash using rockyou and a cracking tool of your choice. What's the password?
+### Crack the hash using rockyou and a cracking tool of your choice. What's the password?
 
 As we have seen before in the code, the hash format is sha512.
 
@@ -137,7 +143,7 @@ I’ll try to crack it using John the Ripper, but I don’t remember how to crac
 
 [https://miloserdov.org/?p=5960#61](https://miloserdov.org/?p=5960#61)
 
-I create a file named hash.txt which will contain  `hash$salt`:
+I create a file named hash.txt which will contain `hash$salt`:
 
 <figure><img src="../../.gitbook/assets/overpasstwo13.png" alt=""><figcaption></figcaption></figure>
 
@@ -145,25 +151,25 @@ Now I use John with the correct formar to crack the hash:
 
 <figure><img src="../../.gitbook/assets/overpasstwo14.png" alt=""><figcaption></figcaption></figure>
 
-# Attack - Get back in!
+## Attack - Get back in!
 
 Now that the incident is investigated, Paradox needs someone to take control of the Overpass production server again.
 
 There's flags on the box that Overpass can't afford to lose by formatting the server!
 
-## The attacker defaced the website. What message did they leave as a heading?
+### The attacker defaced the website. What message did they leave as a heading?
 
 Let’s visit the web page:
 
 <figure><img src="../../.gitbook/assets/overpasstwo15.png" alt=""><figcaption></figcaption></figure>
 
-## Using the information you've found previously, hack your way back in!
+### Using the information you've found previously, hack your way back in!
 
 I suppose that the username is james, as the hacker has created his own RSA key for this user before:
 
 <figure><img src="../../.gitbook/assets/overpasstwo16.png" alt=""><figcaption></figcaption></figure>
 
-I have no clues about how I can get that key to connect as the hacker... 
+I have no clues about how I can get that key to connect as the hacker...
 
 In the last line it seems as the hacker has opened a ssh service in port 2222.
 
@@ -177,13 +183,13 @@ Maybe the user is CooctusClan and the password may be the one used to generate t
 
 Lol, it is hahaha
 
-## What's the user flag?
+### What's the user flag?
 
 After a quick directory listing in the current and the james directories I found it.
 
 <figure><img src="../../.gitbook/assets/overpasstwo19.png" alt=""><figcaption></figcaption></figure>
 
-## What's the root flag?
+### What's the root flag?
 
 As we probably will need root privileges to find that flag, let’s see if we perform privesc:
 
@@ -211,8 +217,8 @@ Last one is suspicious, it looks like a copy of bash but with SUID.
 
 <figure><img src="../../.gitbook/assets/overpasstwo24.png" alt=""><figcaption></figcaption></figure>
 
-And... It is! 
+And... It is!
 
-Remainder: the option `-p`  holds the file owner privileges when running the binary.
+Remainder: the option `-p` holds the file owner privileges when running the binary.
 
 <figure><img src="../../.gitbook/assets/overpasstwo25.png" alt=""><figcaption></figcaption></figure>

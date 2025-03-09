@@ -1,4 +1,10 @@
-# Agent Sudo - Writeup
+---
+description: '#brute-force, #cracking, #linux, #steganography, #sudo'
+---
+
+# AgentSudo
+
+## Agent Sudo - Writeup
 
 **Date**: 12/01/2025
 
@@ -6,11 +12,11 @@
 
 **CTF**: [https://tryhackme.com/r/room/agentsudoctf](https://tryhackme.com/r/room/agentsudoctf)
 
----
+***
 
-You found a secret server located under the deep sea. Your task is to hack inside the server and reveal the truth. 
+You found a secret server located under the deep sea. Your task is to hack inside the server and reveal the truth.
 
-# Enumerate
+## Enumerate
 
 Let’s start by checking the connection with the machine:
 
@@ -28,9 +34,9 @@ Now we can get more info of this ports using nmap:
 
 <figure><img src="../../.gitbook/assets/agentsudo3.png" alt=""><figcaption></figcaption></figure>
 
-- port 21 (FTP): vsftpd 3.0.3
-- port 22 (SSH): OpenSSH 7.6p1 → Ubuntu Bionic 18.04 (Launchpad)
-- port 80 (HTTP): Apache httpd 2.4.29
+* port 21 (FTP): vsftpd 3.0.3
+* port 22 (SSH): OpenSSH 7.6p1 → Ubuntu Bionic 18.04 (Launchpad)
+* port 80 (HTTP): Apache httpd 2.4.29
 
 Let’s take a look to the web page:
 
@@ -58,11 +64,11 @@ Now, let’s start the attack:
 
 <figure><img src="../../.gitbook/assets/agentsudo9.png" alt=""><figcaption></figcaption></figure>
 
-We can see that the status code of the request with the payload “C” as user-agent is different (302) which means that the page is redirecting us to “agent_C_attention.php” page. Let’s take a look:
+We can see that the status code of the request with the payload “C” as user-agent is different (302) which means that the page is redirecting us to “agent\_C\_attention.php” page. Let’s take a look:
 
 <figure><img src="../../.gitbook/assets/agentsudo10.png" alt=""><figcaption></figcaption></figure>
 
-# Hash cracking and brute-force
+## Hash cracking and brute-force
 
 Seems to be a message sent by Agent R to Agent C telling him that his password is weak. Knowing that, let’s see if we can guess the password of “chris” username for FTP or SSH services using hydra:
 
@@ -114,7 +120,7 @@ Let’s try to use JohnTheRipper to crack the password. First we have to use **z
 
 <figure><img src="../../.gitbook/assets/agentsudo25.png" alt=""><figcaption></figcaption></figure>
 
- And we get the password! Let’s decompress the ZIP file:
+And we get the password! Let’s decompress the ZIP file:
 
 <figure><img src="../../.gitbook/assets/agentsudo26.png" alt=""><figcaption></figcaption></figure>
 
@@ -134,7 +140,7 @@ Let’s see if we can connect to FTP or SSH using this credentials:
 
 <figure><img src="../../.gitbook/assets/agentsudo21.png" alt=""><figcaption></figcaption></figure>
 
-# Capture the user flag
+## Capture the user flag
 
 The credentials are not valid for FTP, but they are for SSH! Now we are logged as james at the target machine!
 
@@ -146,21 +152,19 @@ At the home folder of the current user we found the user flag and an image. Let�
 
 I know that there is something related to the Rosswell incident, but after a reverse image search using tineye website, the photo is called “Rosswell Alien Autopsy”
 
-# Privilege escalation
+## Privilege escalation
 
 Now, let’s look for privilege escalation. Let’s check the sudoers first:
 
 <figure><img src="../../.gitbook/assets/agentsudo23.png" alt=""><figcaption></figcaption></figure>
 
-It looks interesting, let’s search what does it mean. After a quick search it seems that the user james can execute /bin/bash as any user except as root. It also redircts me to a ExploitDB page, where I can see that there is a vulnerability (CVE-2019-14287) that allows privilege escalation:  
+It looks interesting, let’s search what does it mean. After a quick search it seems that the user james can execute /bin/bash as any user except as root. It also redircts me to a ExploitDB page, where I can see that there is a vulnerability (CVE-2019-14287) that allows privilege escalation:
 
 <figure><img src="../../.gitbook/assets/agentsudo24.png" alt=""><figcaption></figcaption></figure>
 
-> Sudo doesn't check for the existence of the specified user id and executes the with arbitrary user id with the sudo priv
--u#-1 returns as 0 which is root's id
-> 
+> Sudo doesn't check for the existence of the specified user id and executes the with arbitrary user id with the sudo priv -u#-1 returns as 0 which is root's id
 
-As it’s explained on the exploit description, there is a vulnerability where, in this conditions where the active user can execute a bash as any other user except as root, the command `sudo -u#-1 /bin/bash` can be executed to gain a root bash. 
+As it’s explained on the exploit description, there is a vulnerability where, in this conditions where the active user can execute a bash as any other user except as root, the command `sudo -u#-1 /bin/bash` can be executed to gain a root bash.
 
 <figure><img src="../../.gitbook/assets/agentsudo30.png" alt=""><figcaption></figcaption></figure>
 
