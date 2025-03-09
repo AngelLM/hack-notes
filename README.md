@@ -21,9 +21,21 @@ layout:
 
 # whoami
 
-I remember when I was younger I was very interested in hackers, programming and that kind of stuff. Back then I barely knew how to program and it all seemed very complex to me. Now, although it still seems to me a pretty difficult world, I have decided to get interested and start learning.&#x20;
+My name is Angel and here I am sharing my learning about cybersecurity. \
+I started in this world not so much to pursue it professionally, but out of pure curiosity, and the truth is that I've enjoyed it.&#x20;
 
-Here you can find writeups of the machines I have completed on platforms like **Hack The Box** or **TryHackMe**, as well as some resources that I find useful.
+I remember when I was younger I was very interested in hackers, programming and that kind of stuff. Back then I barely knew how to program and it all seemed very complex to me. \
+Now, although it still seems like a pretty difficult world to me, I have decided to start learning.&#x20;
+
+Here you can find write-ups of the machines I have completed on platforms like Hack The Box or TryHackMe, as well as some resources I find useful.
+
+<table data-view="cards"><thead><tr><th></th><th data-type="content-ref"></th><th data-hidden data-card-cover data-type="files"></th></tr></thead><tbody><tr><td>HTB Writeups</td><td><a href="broken-reference">Broken link</a></td><td><a href=".gitbook/assets/htb.jpg">htb.jpg</a></td></tr><tr><td>THM Writeups</td><td><a href="broken-reference">Broken link</a></td><td><a href=".gitbook/assets/thm.jpg">thm.jpg</a></td></tr><tr><td>Utils</td><td><a href="broken-reference">Broken link</a></td><td><a href=".gitbook/assets/images.jpg">images.jpg</a></td></tr></tbody></table>
+
+
+
+
+
+If you want to take a look at my profiles on these platforms, here are a couple of links:
 
 {% embed url="https://app.hackthebox.com/profile/858487" %}
 Hack The Box Profile - angellm

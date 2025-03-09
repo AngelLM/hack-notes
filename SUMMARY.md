@@ -43,12 +43,13 @@
   * [Relevant](thm/2022/relevant.md)
   * [Internal](thm/2022/internal.md)
   * [Dogcat](thm/2022/dogcat.md)
-
-
-
 * [2025](thm/2025/README.md)
   * [AgentSudo](thm/2025/agentsudo.md)
   * [StuxCTF](thm/2025/stuxctf.md)
   * [Lookup](thm/2025/lookup.md)
   * [Light](thm/2025/light.md)
   * [SilverPlatter](thm/2025/silverplatter.md)
+
+## Utils
+
+* [Cheatsheets](utils/cheatsheets.md)
