@@ -32,7 +32,7 @@ Let’s use whatweb to try to obtain more info of the website hosted in the http
 
 Nothing new, let’s see how the page looks:
 
-<figure><img src="../../.gitbook/assets/imagen (7).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/goodgames5.png" alt=""><figcaption></figcaption></figure>
 
 I appreciate no difference between the website accessed via IP or domain, so I’m going to use the domain.
 
